@@ -1,35 +1,46 @@
+import { render } from '@testing-library/react';
 import React from 'react';
 import './Board.css';
 import { items } from './itemConfig.js';
 
-const Shape = React.forwardRef((props, ref) => {
-  const cfg = props.config;
-  const shapeStyle = {
-    background: '#febd45',
-    width: cfg.dim.w,
-    height: cfg.dim.h,
-    transform: `translate(${cfg.pos.x}px, ${cfg.pos.y}px) translate(-50%, -50%)`,
-  };
-  return <div style={shapeStyle} ref={ref} onClick={props.onClick}></div>;
-});
+class Shape extends React.Component {
+  render() {
+    const cfg = this.props.config;
+    const shapeStyle = {
+      background: '#febd45',
+      width: cfg.dim.w,
+      height: cfg.dim.h,
+      transform: `translate(${cfg.pos.x}px, ${cfg.pos.y}px) translate(-50%, -50%)`,
+    };
+    return (
+      <div
+        style={shapeStyle}
+        ref={this.props.setRef}
+        onClick={this.props.onClick}
+      ></div>
+    );
+  }
+}
 
-const Connection = React.forwardRef((props, ref) => {
-  const cfg = props.config;
-  return (
-    <line
-      x1={cfg.from.pos.x}
-      y1={cfg.from.pos.y}
-      x2={cfg.to.pos.x}
-      y2={cfg.to.pos.y}
-      style={{
-        stroke: 'black',
-        strokeWidth: '3px',
-      }}
-      ref={ref}
-      onClick={props.onClick}
-    />
-  );
-});
+class Connection extends React.Component {
+  render() {
+    const cfg = this.props.config;
+    return (
+      <line
+        x1={cfg.from.pos.x}
+        y1={cfg.from.pos.y}
+        x2={cfg.to.pos.x}
+        y2={cfg.to.pos.y}
+        style={{
+          stroke: 'black',
+          strokeWidth: '3px',
+        }}
+        ref={this.props.setRef}
+        onClick={this.props.onClick}
+      />
+    );
+  }
+}
 
 class ItemEditor extends React.Component {
   render() {
@@ -91,7 +102,7 @@ export default class Board extends React.Component {
             <Shape
               config={item}
               key={item.id}
-              ref={ref}
+              setRef={ref}
               onClick={(e) => this.focusItem(e, item, ref)}
             />
           );
@@ -105,7 +116,7 @@ export default class Board extends React.Component {
             <Connection
               config={item}
               key={item.id}
-              ref={ref}
+              setRef={ref}
               onClick={(e) => this.focusItem(e, item, ref)}
             />
           );
