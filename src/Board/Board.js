@@ -4,30 +4,29 @@ import { items } from './itemConfig.js';
 
 class Shape extends React.Component {
   render() {
-    const config = this.props.config;
+    const cfg = this.props.config;
     const shapeStyle = {
       background: '#febd45',
-      width: config.dim.w,
-      height: config.dim.h,
-      transform: `translate(${config.pos.x}px, ${config.pos.y}px)`,
+      width: cfg.dim.w,
+      height: cfg.dim.h,
+      transform: `translate(${cfg.pos.x}px, ${cfg.pos.y}px) translate(-50%, -50%)`,
     };
-    return <div style={shapeStyle} ref={this.props.onRef}></div>;
+    return <div style={shapeStyle}></div>;
   }
 }
 
 class Connection extends React.Component {
   render() {
-    const config = this.props.config;
-    const path = config.path;
-
+    const cfg = this.props.config;
     return (
       <line
-        onClick={this.props.onClick}
-        x1={path.from.pos.x}
-        y1={path.from.pos.y}
-        x2={path.to.pos.x}
-        y2={path.to.pos.y}
-        style={config.style}
+        x1={cfg.from.pos.x}
+        y1={cfg.from.pos.y}
+        x2={cfg.to.pos.x}
+        y2={cfg.to.pos.y}
+        style={{
+          stroke: 'black',
+        }}
       />
     );
   }
@@ -41,17 +40,30 @@ export default class Board extends React.Component {
     };
   }
 
+  moveShape() {
+    let itemArray = [...this.state.items];
+    let box2 = itemArray[1];
+    box2.pos.x = box2.pos.x + 10;
+    this.setState({
+      items: itemArray,
+    });
+  }
+
   render() {
     let shapes = [];
-    let connections = [];
+    let smartConnections = [];
 
     this.state.items.forEach((item) => {
       switch (item.type) {
         case 'shape':
-          shapes.push(<Shape config={item} key={item.ID} />);
+          shapes.push(<Shape config={item} key={item.id} />);
           break;
-        case 'connection':
-          connections.push(<Connection config={item} key={item.ID} />);
+        case 'smart-connection':
+          const from = this.state.items.find((i) => i.id === item.from.id);
+          const to = this.state.items.find((i) => i.id === item.to.id);
+          item.from.pos = from.pos;
+          item.to.pos = to.pos;
+          smartConnections.push(<Connection config={item} key={item.id} />);
           break;
         default:
           break;
@@ -62,8 +74,9 @@ export default class Board extends React.Component {
       <div>
         <div className='board'>
           {shapes}
-          <svg>{connections}</svg>
+          <svg>{smartConnections}</svg>
         </div>
+        <button onClick={() => this.moveShape()}>Move 10px</button>
       </div>
     );
   }

@@ -1,48 +1,90 @@
 export const items = [
   {
     type: 'shape',
-    ID: 0,
+    id: 'A',
     dim: {
-      w: 100,
-      h: 100,
+      w: 50,
+      h: 50,
     },
     pos: {
       x: 100,
+      y: 300,
+    },
+  },
+  {
+    type: 'shape',
+    id: 'B',
+    dim: {
+      w: 50,
+      h: 50,
+    },
+    pos: {
+      x: 300,
+      y: 200,
+    },
+  },
+  {
+    type: 'shape',
+    id: 'C',
+    dim: {
+      w: 50,
+      h: 50,
+    },
+    pos: {
+      x: 500,
       y: 100,
     },
   },
   {
     type: 'shape',
-    ID: 1,
+    id: 'D',
     dim: {
-      w: 100,
-      h: 100,
+      w: 50,
+      h: 50,
     },
     pos: {
-      x: 400,
-      y: 200,
+      x: 500,
+      y: 300,
     },
   },
   {
-    type: 'connection',
-    ID: 2,
-    path: {
-      from: {
-        pos: {
-          x: 200,
-          y: 150,
-        },
-      },
-      to: {
-        pos: {
-          x: 400,
-          y: 250,
-        },
-      },
+    type: 'smart-connection',
+    ID: 'E',
+    from: {
+      id: 'A',
     },
-    style: {
-      stroke: 'black',
-      strokeWidth: '2',
+    to: {
+      id: 'B',
+    },
+  },
+  {
+    type: 'smart-connection',
+    ID: 'F',
+    from: {
+      id: 'B',
+    },
+    to: {
+      id: 'C',
+    },
+  },
+  {
+    type: 'smart-connection',
+    ID: 'G',
+    from: {
+      id: 'B',
+    },
+    to: {
+      id: 'D',
+    },
+  },
+  {
+    type: 'smart-connection',
+    ID: 'H',
+    from: {
+      id: 'D',
+    },
+    to: {
+      id: 'C',
     },
   },
 ];
