@@ -21,3 +21,15 @@ svg {
 line {
   /* z-index: 2; */
 }
+.editor {
+  width: 10px;
+  height: 10px;
+  position: absolute;
+}
+.highlight-container {
+  position: absolute;
+  background: #4598fe66;
+  outline: 2px solid hsl(213deg 82% 63%);
+  z-index: 3;
+  box-sizing: border-box;
+}
