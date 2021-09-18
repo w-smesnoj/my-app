@@ -12,12 +12,17 @@ class Shape extends React.Component {
       height: cfg.dim.h,
       transform: `translate(${cfg.pos.x}px, ${cfg.pos.y}px) translate(-50%, -50%)`,
     };
+    const style = {
+      fontWeight: cfg.text.bold ? 'bold' : null,
+    };
     return (
       <div
-        style={shapeStyle}
+        style={{ ...shapeStyle, ...style }}
         ref={this.props.setRef}
         onClick={this.props.onClick}
-      ></div>
+      >
+        {cfg.text.data}
+      </div>
     );
   }
 }
@@ -46,16 +51,27 @@ class ItemEditor extends React.Component {
   render() {
     if (this.props.item.ref === undefined) return <div></div>;
     const ref = this.props.item.ref.getBoundingClientRect();
-    console.log(ref.x);
+
+    const x = ref.x + ref.width / 2;
+    const y = ref.y;
+    const transform = `translate(${x}px,${y}px) translate(-50%, -50%) translateY(-2.7rem)`;
+
+    const change = this.props.handleChange;
+
     return (
-      <div
-        className='highlight-container'
-        style={{
-          width: `${ref.width}px`,
-          height: `${ref.height}px`,
-          transform: `translate(${ref.x}px,${ref.y}px)`,
-        }}
-      ></div>
+      <div>
+        <div className='editor' style={{ transform: transform }}>
+          <button onClick={(e) => change({ type: 'bold' })}>B</button>
+        </div>
+        <div
+          className='highlight-container'
+          style={{
+            width: `${ref.width}px`,
+            height: `${ref.height}px`,
+            transform: `translate(${ref.x}px,${ref.y}px)`,
+          }}
+        ></div>
+      </div>
     );
   }
 }
@@ -90,6 +106,23 @@ export default class Board extends React.Component {
       },
     });
   }
+
+  handleChange(e) {
+    const items = [...this.state.items];
+    const item = items.find(
+      (item) => item.id === this.state.focusedItem.item.id
+    );
+
+    switch (e.type) {
+      case 'bold':
+        item.text.bold = !item.text.bold;
+        break;
+      default:
+        return;
+    }
+    this.setState({ items });
+  }
+
   render() {
     let shapes = [];
     let smartConnections = [];
@@ -128,7 +161,10 @@ export default class Board extends React.Component {
 
     return (
       <div>
-        <ItemEditor item={this.state.focusedItem} />
+        <ItemEditor
+          item={this.state.focusedItem}
+          handleChange={(e) => this.handleChange(e, this.state.focusedItem)}
+        />
         <div className='board'>
           {shapes}
           <svg>{smartConnections}</svg>

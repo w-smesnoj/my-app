@@ -18,13 +18,20 @@ svg {
   top: 0;
   left: 0;
 }
-line {
-  /* z-index: 2; */
-}
 .editor {
-  width: 10px;
-  height: 10px;
   position: absolute;
+  z-index: 3;
+  background: white;
+  display: flex;
+  border-radius: 0.3rem;
+  box-shadow: 0px 3px 8px -3px #25346b3b;
+}
+.editor > button {
+  background-color: transparent;
+  border: 0;
+  padding: 0.6rem;
+  width: 2.5rem;
+  height: 2.5rem;
 }
 .highlight-container {
   position: absolute;

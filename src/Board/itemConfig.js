@@ -10,6 +10,10 @@ export const items = [
       x: 100,
       y: 300,
     },
+    text: {
+      data: 'A',
+      bold: false,
+    },
   },
   {
     type: 'shape',
@@ -21,6 +25,10 @@ export const items = [
     pos: {
       x: 300,
       y: 200,
+    },
+    text: {
+      data: 'B',
+      bold: true,
     },
   },
   {
@@ -34,6 +42,10 @@ export const items = [
       x: 500,
       y: 100,
     },
+    text: {
+      data: 'C',
+      bold: false,
+    },
   },
   {
     type: 'shape',
@@ -45,6 +57,10 @@ export const items = [
     pos: {
       x: 500,
       y: 300,
+    },
+    text: {
+      data: 'D',
+      bold: false,
     },
   },
   {
