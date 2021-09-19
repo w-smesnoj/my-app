@@ -9,7 +9,7 @@ class Shape extends React.Component {
       background: '#febd45',
       width: cfg.dim.w,
       height: cfg.dim.h,
-      transform: `translate(${cfg.pos.x}px, ${cfg.pos.y}px) translate(-50%, -50%)`,
+      transform: `translate(${cfg.pos.x}px, ${cfg.pos.y}px) `,
     };
     const style = {
       fontWeight: cfg.text.bold ? 'bold' : null,
@@ -22,6 +22,97 @@ class Shape extends React.Component {
       >
         {cfg.text.data}
       </div>
+    );
+  }
+}
+
+class SmartBezier extends React.Component {
+  offsetPoints(e, at) {
+    const pos = e.pos;
+    const dim = e.dim;
+
+    if (at === 'south') {
+      return { x: pos.x + dim.w / 2, y: pos.y + dim.h };
+    } else if (at === 'north') {
+      return { x: pos.x + dim.w / 2, y: pos.y };
+    } else if (at === 'west') {
+      return { x: pos.x, y: pos.y + dim.h / 2 };
+    } else if (at === 'east') {
+      return { x: pos.x + dim.w, y: pos.y + dim.h / 2 };
+    } else {
+      // center
+      return { x: pos.x + dim.w / 2, y: pos.y + dim.h / 2 };
+    }
+  }
+
+  determineOrientation(A, B, callback) {
+    let deg = this.cordToDeg(A, B);
+
+    if (deg > 135 && deg < 225) {
+      callback.west();
+    } else if (deg > 315 || deg < 45) {
+      callback.east();
+    } else if (deg > 225 && deg < 315) {
+      callback.north();
+    } else {
+      callback.south();
+    }
+  }
+
+  cordToDeg(A, B) {
+    let rad = Math.atan2(A.y - B.y, A.x - B.x);
+    rad = rad < 0 ? rad + 2 * Math.PI : rad;
+    return rad * (180 / Math.PI);
+  }
+
+  render() {
+    const A = this.props.from;
+    const B = this.props.to;
+    let isHorizontal = false;
+    let a = {},
+      b = {};
+
+    this.determineOrientation(
+      this.offsetPoints(A, 'center'),
+      this.offsetPoints(B, 'center'),
+      {
+        west: () => {
+          isHorizontal = true;
+          a.at = 'east';
+          b.at = 'west';
+        },
+        east: () => {
+          a.at = 'west';
+          b.at = 'east';
+          isHorizontal = true;
+        },
+        north: () => {
+          a.at = 'south';
+          b.at = 'north';
+        },
+        south: () => {
+          a.at = 'north';
+          b.at = 'south';
+        },
+      }
+    );
+
+    a = this.offsetPoints(A, a.at);
+    b = this.offsetPoints(B, b.at);
+
+    let start = `${a.x} ${a.y}`;
+    let end = `${b.x} ${b.y}`;
+
+    let horizontal = `C ${(b.x + a.x) / 2} ${a.y} ${(b.x + a.x) / 2} ${b.y}`;
+    let vertical = `C ${a.x} ${(b.y + a.y) / 2} ${b.x} ${(a.y + b.y) / 2}`;
+    let bezier = isHorizontal ? horizontal : vertical;
+
+    return (
+      <path
+        d={`M ${start} ${bezier}, ${end}`}
+        ref={this.props.setRef}
+        onClick={this.props.onClick}
+      ></path>
     );
   }
 }
@@ -151,6 +242,7 @@ export default class Board extends React.Component {
   render() {
     let shapes = [];
     let smartConnections = [];
+    let smartBezier = [];
 
     this.state.items.forEach((item) => {
       const ref = React.createRef();
@@ -177,6 +269,19 @@ export default class Board extends React.Component {
             />
           );
           break;
+        case 'smart-bezier':
+          const A = this.state.items.find((i) => i.id === item.from.id);
+          const B = this.state.items.find((i) => i.id === item.to.id);
+          smartBezier.push(
+            <SmartBezier
+              from={A}
+              to={B}
+              key={item.id}
+              setRef={ref}
+              onClick={(e) => this.focusItem(e, item, ref)}
+            />
+          );
+          break;
         default:
           break;
       }
@@ -190,7 +295,10 @@ export default class Board extends React.Component {
         />
         <div className='board'>
           {shapes}
-          <svg onClick={(e) => this.clearFocus(e)}>{smartConnections}</svg>
+          <svg onClick={(e) => this.clearFocus(e)}>
+            {smartConnections}
+            {smartBezier}
+          </svg>
         </div>
         <button onClick={() => this.moveShape()}>Move 10px</button>
       </div>
