@@ -1,4 +1,3 @@
-import { render } from '@testing-library/react';
 import React from 'react';
 import './Board.css';
 import { items } from './itemConfig.js';
@@ -27,15 +26,32 @@ class Shape extends React.Component {
   }
 }
 
+class SmartConnection extends React.Component {
+  render() {
+    const from = this.props.items.find((i) => i.id === this.props.from);
+    const to = this.props.items.find((i) => i.id === this.props.to);
+
+    return (
+      <Connection
+        from={from.pos}
+        to={to.pos}
+        setRef={this.props.setRef}
+        onClick={this.props.onClick}
+      />
+    );
+  }
+}
+
 class Connection extends React.Component {
   render() {
-    const cfg = this.props.config;
+    const from = this.props.from;
+    const to = this.props.to;
     return (
       <line
-        x1={cfg.from.pos.x}
-        y1={cfg.from.pos.y}
-        x2={cfg.to.pos.x}
-        y2={cfg.to.pos.y}
+        x1={from.x}
+        y1={from.y}
+        x2={to.x}
+        y2={to.y}
         style={{
           stroke: 'black',
           strokeWidth: '3px',
@@ -88,6 +104,15 @@ export default class Board extends React.Component {
     };
   }
 
+  clearFocus(e) {
+    if (e.currentTarget !== e.target) return;
+    this.setState({
+      focusedItem: {
+        item: null,
+        txt: null,
+      },
+    });
+  }
   moveShape() {
     let itemArray = [...this.state.items];
     let box2 = itemArray[1];
@@ -141,14 +166,12 @@ export default class Board extends React.Component {
           );
           break;
         case 'smart-connection':
-          const from = this.state.items.find((i) => i.id === item.from.id);
-          const to = this.state.items.find((i) => i.id === item.to.id);
-          item.from.pos = from.pos;
-          item.to.pos = to.pos;
           smartConnections.push(
-            <Connection
-              config={item}
+            <SmartConnection
+              from={item.from.id}
+              to={item.to.id}
               key={item.id}
+              items={this.state.items}
               setRef={ref}
               onClick={(e) => this.focusItem(e, item, ref)}
             />
@@ -167,7 +190,7 @@ export default class Board extends React.Component {
         />
         <div className='board'>
           {shapes}
-          <svg>{smartConnections}</svg>
+          <svg onClick={(e) => this.clearFocus(e)}>{smartConnections}</svg>
         </div>
         <button onClick={() => this.moveShape()}>Move 10px</button>
       </div>
