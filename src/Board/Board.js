@@ -1,6 +1,7 @@
 import React from 'react';
 import './Board.css';
 import { items } from './itemConfig.js';
+import Draggable from 'react-draggable';
 
 class Shape extends React.Component {
   render() {
@@ -157,10 +158,10 @@ class Connection extends React.Component {
 class ItemEditor extends React.Component {
   render() {
     if (this.props.item.ref === undefined) return <div></div>;
-    const ref = this.props.item.ref.getBoundingClientRect();
 
-    const x = ref.x + ref.width / 2;
-    const y = ref.y;
+    const item = this.props.item.item;
+    const x = item.pos.x + item.dim.w / 2;
+    const y = item.pos.y;
     const transform = `translate(${x}px,${y}px) translate(-50%, -50%) translateY(-2.7rem)`;
 
     const change = this.props.handleChange;
@@ -170,14 +171,20 @@ class ItemEditor extends React.Component {
         <div className='editor' style={{ transform: transform }}>
           <button onClick={(e) => change({ type: 'bold' })}>B</button>
         </div>
-        <div
-          className='highlight-container'
-          style={{
-            width: `${ref.width}px`,
-            height: `${ref.height}px`,
-            transform: `translate(${ref.x}px,${ref.y}px)`,
-          }}
-        ></div>
+        <Draggable
+          position={item.pos}
+          grid={[25, 25]}
+          scale={1}
+          onStop={this.props.handleDrag}
+        >
+          <div
+            className='highlight-container'
+            style={{
+              width: `${item.dim.w}px`,
+              height: `${item.dim.h}px`,
+            }}
+          ></div>
+        </Draggable>
       </div>
     );
   }
@@ -238,6 +245,17 @@ export default class Board extends React.Component {
     }
     this.setState({ items });
   }
+  handleDrag(e) {
+    const items = [...this.state.items];
+    const item = items.find(
+      (item) => item.id === this.state.focusedItem.item.id
+    );
+    item.pos = {
+      x: e.clientX - e.offsetX,
+      y: e.clientY - e.offsetY,
+    };
+    this.setState({ items });
+  }
 
   render() {
     let shapes = [];
@@ -292,6 +310,7 @@ export default class Board extends React.Component {
         <ItemEditor
           item={this.state.focusedItem}
           handleChange={(e) => this.handleChange(e, this.state.focusedItem)}
+          handleDrag={(e) => this.handleDrag(e)}
         />
         <div className='board'>
           {shapes}
