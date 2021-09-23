@@ -3,85 +3,73 @@ export const items = [
     type: 'shape',
     id: 'A',
     dim: {
-      w: 50,
+      w: 150,
       h: 50,
     },
     pos: {
-      x: 100,
-      y: 300,
+      x: 325,
+      y: 175,
     },
     text: {
-      data: 'A',
-      bold: false,
+      data: 'Internet',
+      bold: true,
     },
+    className: 'main',
   },
   {
     type: 'shape',
     id: 'B',
     dim: {
-      w: 50,
+      w: 175,
       h: 50,
     },
     pos: {
-      x: 300,
-      y: 200,
+      x: 75,
+      y: 100,
     },
     text: {
-      data: 'B',
-      bold: true,
+      data: 'How does the Internet work?',
+      bold: false,
     },
+    className: 'sub',
   },
   {
     type: 'shape',
     id: 'C',
     dim: {
-      w: 50,
+      w: 175,
       h: 50,
     },
     pos: {
-      x: 500,
-      y: 100,
+      x: 75,
+      y: 175,
     },
     text: {
-      data: 'C',
+      data: 'What is HTTP?',
       bold: false,
     },
+    className: 'sub',
   },
   {
     type: 'shape',
     id: 'D',
     dim: {
-      w: 50,
+      w: 175,
       h: 50,
     },
     pos: {
-      x: 500,
-      y: 300,
+      x: 75,
+      y: 250,
     },
     text: {
-      data: 'D',
+      data: 'Browsers and how they work?',
       bold: false,
     },
-  },
-  {
-    type: 'shape',
-    id: 'E',
-    dim: {
-      w: 50,
-      h: 50,
-    },
-    pos: {
-      x: 200,
-      y: 50,
-    },
-    text: {
-      data: 'E',
-      bold: false,
-    },
+    className: 'sub',
   },
   {
     type: 'smart-bezier',
-    ID: 'F',
+    ID: 'E',
     from: {
       id: 'A',
     },
@@ -91,42 +79,103 @@ export const items = [
   },
   {
     type: 'smart-bezier',
+    ID: 'F',
+    from: {
+      id: 'A',
+    },
+    to: {
+      id: 'C',
+    },
+  },
+  {
+    type: 'smart-bezier',
     ID: 'G',
     from: {
-      id: 'B',
-    },
-    to: {
-      id: 'C',
-    },
-  },
-  {
-    type: 'smart-bezier',
-    ID: 'H',
-    from: {
-      id: 'B',
+      id: 'A',
     },
     to: {
       id: 'D',
     },
   },
   {
+    type: 'shape',
+    id: 'H',
+    dim: {
+      w: 175,
+      h: 50,
+    },
+    pos: {
+      x: 550,
+      y: 100,
+    },
+    text: {
+      data: 'DNS and how it works?',
+      bold: false,
+    },
+    className: 'sub',
+  },
+  {
+    type: 'shape',
+    id: 'I',
+    dim: {
+      w: 175,
+      h: 50,
+    },
+    pos: {
+      x: 550,
+      y: 175,
+    },
+    text: {
+      data: 'What is Domain Name?',
+      bold: false,
+    },
+    className: 'sub',
+  },
+  {
+    type: 'shape',
+    id: 'J',
+    dim: {
+      w: 175,
+      h: 50,
+    },
+    pos: {
+      x: 550,
+      y: 250,
+    },
+    text: {
+      data: 'What is hosting?',
+      bold: false,
+    },
+    className: 'sub',
+  },
+  {
     type: 'smart-bezier',
-    ID: 'I',
+    ID: 'G',
     from: {
-      id: 'D',
+      id: 'A',
     },
     to: {
-      id: 'C',
+      id: 'H',
     },
   },
   {
     type: 'smart-bezier',
-    ID: 'J',
+    ID: 'G',
     from: {
-      id: 'B',
+      id: 'A',
     },
     to: {
-      id: 'E',
+      id: 'I',
+    },
+  },
+  {
+    type: 'smart-bezier',
+    ID: 'G',
+    from: {
+      id: 'A',
+    },
+    to: {
+      id: 'J',
     },
   },
 ];

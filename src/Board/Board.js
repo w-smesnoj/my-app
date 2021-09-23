@@ -7,7 +7,6 @@ class Shape extends React.Component {
   render() {
     const cfg = this.props.config;
     const shapeStyle = {
-      background: '#febd45',
       width: cfg.dim.w,
       height: cfg.dim.h,
       transform: `translate(${cfg.pos.x}px, ${cfg.pos.y}px) `,
@@ -20,6 +19,7 @@ class Shape extends React.Component {
         style={{ ...shapeStyle, ...style }}
         ref={this.props.setRef}
         onClick={this.props.onClick}
+        className={`shape ${cfg.className}`}
       >
         {cfg.text.data}
       </div>
@@ -211,14 +211,6 @@ export default class Board extends React.Component {
       },
     });
   }
-  moveShape() {
-    let itemArray = [...this.state.items];
-    let box2 = itemArray[1];
-    box2.pos.x = box2.pos.x + 10;
-    this.setState({
-      items: itemArray,
-    });
-  }
   focusItem(e, item, ref) {
     e.stopPropagation();
     e.nativeEvent.stopImmediatePropagation();
@@ -319,7 +311,6 @@ export default class Board extends React.Component {
             {smartBezier}
           </svg>
         </div>
-        <button onClick={() => this.moveShape()}>Move 10px</button>
       </div>
     );
   }

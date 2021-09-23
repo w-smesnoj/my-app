@@ -1,6 +1,6 @@
 .board {
   position: absolute;
-  width: 600px;
+  width: 800px;
   height: 400px;
   outline: 1px solid gray;
   background-color: hsl(0deg 0% 95%);
@@ -46,4 +46,18 @@ path {
   outline: 2px solid hsl(213deg 82% 63%);
   z-index: 3;
   box-sizing: border-box;
+}
+.shape {
+  outline: 2px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.main {
+  background: #febd45;
+}
+.sub {
+  background: #ffe599;
+  font-size: 0.7em;
+  font-weight: 500;
 }
