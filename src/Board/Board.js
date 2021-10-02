@@ -16,6 +16,7 @@ class Shape extends React.Component {
     };
     return (
       <div
+        id={this.props.id}
         style={{ ...shapeStyle, ...style }}
         ref={this.props.setRef}
         onClick={this.props.onClick}
@@ -113,6 +114,8 @@ class SmartBezier extends React.Component {
         d={`M ${start} ${bezier}, ${end}`}
         ref={this.props.setRef}
         onClick={this.props.onClick}
+        className={this.props.className}
+        id={this.props.id}
       ></path>
     );
   }
@@ -260,6 +263,7 @@ export default class Board extends React.Component {
         case 'shape':
           shapes.push(
             <Shape
+              id={item.id}
               config={item}
               key={item.id}
               setRef={ref}
@@ -284,11 +288,13 @@ export default class Board extends React.Component {
           const B = this.state.items.find((i) => i.id === item.to.id);
           smartBezier.push(
             <SmartBezier
+              id={item.id}
               from={A}
               to={B}
               key={item.id}
               setRef={ref}
               onClick={(e) => this.focusItem(e, item, ref)}
+              className={item.className}
             />
           );
           break;

@@ -7,7 +7,7 @@ export const items = [
       h: 50,
     },
     pos: {
-      x: 325,
+      x: 475,
       y: 175,
     },
     text: {
@@ -18,13 +18,40 @@ export const items = [
   },
   {
     type: 'shape',
-    id: 'B',
+    id: 'Z',
     dim: {
-      w: 175,
+      w: 150,
       h: 50,
     },
     pos: {
-      x: 75,
+      x: 475,
+      y: 375,
+    },
+    text: {
+      data: 'HTML',
+      bold: true,
+    },
+    className: 'main',
+  },
+  {
+    type: 'smart-bezier',
+    id: '0',
+    from: {
+      id: 'A',
+    },
+    to: {
+      id: 'Z',
+    },
+  },
+  {
+    type: 'shape',
+    id: 'B',
+    dim: {
+      w: 250,
+      h: 50,
+    },
+    pos: {
+      x: 100,
       y: 100,
     },
     text: {
@@ -37,11 +64,11 @@ export const items = [
     type: 'shape',
     id: 'C',
     dim: {
-      w: 175,
+      w: 250,
       h: 50,
     },
     pos: {
-      x: 75,
+      x: 100,
       y: 175,
     },
     text: {
@@ -54,11 +81,11 @@ export const items = [
     type: 'shape',
     id: 'D',
     dim: {
-      w: 175,
+      w: 250,
       h: 50,
     },
     pos: {
-      x: 75,
+      x: 100,
       y: 250,
     },
     text: {
@@ -69,43 +96,46 @@ export const items = [
   },
   {
     type: 'smart-bezier',
-    ID: 'E',
+    id: 'E',
     from: {
       id: 'A',
     },
     to: {
       id: 'B',
     },
+    className: 'sub',
   },
   {
     type: 'smart-bezier',
-    ID: 'F',
+    id: 'F',
     from: {
       id: 'A',
     },
     to: {
       id: 'C',
     },
+    className: 'sub',
   },
   {
     type: 'smart-bezier',
-    ID: 'G',
+    id: 'G',
     from: {
       id: 'A',
     },
     to: {
       id: 'D',
     },
+    className: 'sub',
   },
   {
     type: 'shape',
     id: 'H',
     dim: {
-      w: 175,
+      w: 250,
       h: 50,
     },
     pos: {
-      x: 550,
+      x: 750,
       y: 100,
     },
     text: {
@@ -118,11 +148,11 @@ export const items = [
     type: 'shape',
     id: 'I',
     dim: {
-      w: 175,
+      w: 250,
       h: 50,
     },
     pos: {
-      x: 550,
+      x: 750,
       y: 175,
     },
     text: {
@@ -135,11 +165,11 @@ export const items = [
     type: 'shape',
     id: 'J',
     dim: {
-      w: 175,
+      w: 250,
       h: 50,
     },
     pos: {
-      x: 550,
+      x: 750,
       y: 250,
     },
     text: {
@@ -150,32 +180,35 @@ export const items = [
   },
   {
     type: 'smart-bezier',
-    ID: 'G',
+    id: '1',
     from: {
       id: 'A',
     },
     to: {
       id: 'H',
     },
+    className: 'sub',
   },
   {
     type: 'smart-bezier',
-    ID: 'G',
+    id: '2',
     from: {
       id: 'A',
     },
     to: {
       id: 'I',
     },
+    className: 'sub',
   },
   {
     type: 'smart-bezier',
-    ID: 'G',
+    id: '3',
     from: {
       id: 'A',
     },
     to: {
       id: 'J',
     },
+    className: 'sub',
   },
 ];
