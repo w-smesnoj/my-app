@@ -2,6 +2,38 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Todo
+
+- [x] Refactor into different files
+- [ ] Editor
+  - [ ] Resize Shape
+  - [ ] Create Line from Shape
+- [ ] Group Selector
+- [ ] Shape Edits
+  - [ ] Text
+    - [ ] Font
+    - [ ] Size
+    - [ ] Style
+      - [x] Bold
+      - [ ] Italics
+      - [ ] Underline
+      - [ ] Striketrough
+    - [ ] Alignment
+      - [ ] Left/Middle/Right
+      - [ ] Top/Middle/Bottom
+    - [ ] Link
+    - [ ] Color
+    - [ ] Marker
+  - [ ] Shape Border (Type/Color/Thicknes)
+  - [ ] Shape Color
+- [ ] Line Edits
+  - [ ] Position Draggable
+  - [ ] Style of Ends
+  - [ ] Type (Straight/Riggid/Bezier)
+  - [ ] Style (Full/Lines/Dots)
+- [ ] State History
+- [ ] Right Click Context Menu
+
 ## Available Scripts
 
 In the project directory, you can run:

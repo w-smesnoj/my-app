@@ -1,0 +1,21 @@
+.editor {
+  position: absolute;
+  z-index: 3;
+  background: white;
+  display: flex;
+  border-radius: 0.3rem;
+  box-shadow: 0px 3px 8px -3px #25346b3b;
+}
+.editor > button {
+  background-color: transparent;
+  border: 0;
+  padding: 0.6rem;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+.highlight-container {
+  position: absolute;
+  outline: 1px solid hsl(213deg 82% 63%);
+  z-index: 3;
+  box-sizing: border-box;
+}
