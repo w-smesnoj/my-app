@@ -24,8 +24,8 @@ export const items = [
       h: 50,
     },
     pos: {
-      x: 475,
-      y: 375,
+      x: 575,
+      y: 475,
     },
     text: {
       data: 'HTML',
@@ -34,7 +34,8 @@ export const items = [
     className: 'main',
   },
   {
-    type: 'smart-bezier',
+    type: 'smart-connection',
+    form: 'linear',
     id: '0',
     from: {
       id: 'A',
@@ -42,6 +43,7 @@ export const items = [
     to: {
       id: 'Z',
     },
+    className: 'main',
   },
   {
     type: 'shape',
@@ -95,7 +97,8 @@ export const items = [
     className: 'sub',
   },
   {
-    type: 'smart-bezier',
+    type: 'smart-connection',
+    form: 'linear',
     id: 'E',
     from: {
       id: 'A',
@@ -106,7 +109,8 @@ export const items = [
     className: 'sub',
   },
   {
-    type: 'smart-bezier',
+    type: 'smart-connection',
+    form: 'linear',
     id: 'F',
     from: {
       id: 'A',
@@ -117,7 +121,8 @@ export const items = [
     className: 'sub',
   },
   {
-    type: 'smart-bezier',
+    type: 'smart-connection',
+    form: 'linear',
     id: 'G',
     from: {
       id: 'A',
@@ -125,7 +130,7 @@ export const items = [
     to: {
       id: 'D',
     },
-    className: 'sub',
+    className: 'main',
   },
   {
     type: 'shape',
@@ -179,7 +184,8 @@ export const items = [
     className: 'sub',
   },
   {
-    type: 'smart-bezier',
+    type: 'smart-connection',
+    form: 'bezier',
     id: '1',
     from: {
       id: 'A',
@@ -190,7 +196,8 @@ export const items = [
     className: 'sub',
   },
   {
-    type: 'smart-bezier',
+    type: 'smart-connection',
+    form: 'bezier',
     id: '2',
     from: {
       id: 'A',
@@ -201,7 +208,8 @@ export const items = [
     className: 'sub',
   },
   {
-    type: 'smart-bezier',
+    type: 'smart-connection',
+    form: 'bezier',
     id: '3',
     from: {
       id: 'A',
@@ -209,6 +217,6 @@ export const items = [
     to: {
       id: 'J',
     },
-    className: 'sub',
+    className: 'main',
   },
 ];

@@ -1,5 +1,5 @@
 import React from 'react';
-import './SmartBezier.css';
+import './SmartConnection.css';
 
 export default class SmartBezier extends React.Component {
   render() {
@@ -7,7 +7,8 @@ export default class SmartBezier extends React.Component {
     const B = this.props.to;
     let isHorizontal = false,
       a = {},
-      b = {};
+      b = {},
+      result;
 
     determineOrientation(offsetPoints(A, 'center'), offsetPoints(B, 'center'), {
       west: () => {
@@ -33,22 +34,39 @@ export default class SmartBezier extends React.Component {
     a = offsetPoints(A, a.at);
     b = offsetPoints(B, b.at);
 
-    let start = `${a.x} ${a.y}`;
-    let end = `${b.x} ${b.y}`;
+    switch (this.props.form) {
+      case 'bezier':
+        let start = `${a.x} ${a.y}`;
+        let end = `${b.x} ${b.y}`;
+        let horizontal = `C ${(b.x + a.x) / 2} ${a.y} ${(b.x + a.x) / 2} ${
+          b.y
+        }`;
+        let vertical = `C ${a.x} ${(b.y + a.y) / 2} ${b.x} ${(a.y + b.y) / 2}`;
+        let bezier = isHorizontal ? horizontal : vertical;
+        return (
+          <path
+            d={`M ${start} ${bezier}, ${end}`}
+            ref={this.props.setRef}
+            onClick={this.props.onClick}
+            className={this.props.className}
+            id={this.props.id}
+          ></path>
+        );
 
-    let horizontal = `C ${(b.x + a.x) / 2} ${a.y} ${(b.x + a.x) / 2} ${b.y}`;
-    let vertical = `C ${a.x} ${(b.y + a.y) / 2} ${b.x} ${(a.y + b.y) / 2}`;
-    let bezier = isHorizontal ? horizontal : vertical;
-
-    return (
-      <path
-        d={`M ${start} ${bezier}, ${end}`}
-        ref={this.props.setRef}
-        onClick={this.props.onClick}
-        className={this.props.className}
-        id={this.props.id}
-      ></path>
-    );
+      case 'linear':
+      default:
+        return (
+          <line
+            id={this.props.id}
+            onClick={this.props.onClick}
+            className={this.props.className}
+            x1={a.x}
+            y1={a.y}
+            x2={b.x}
+            y2={b.y}
+          />
+        );
+    }
   }
 }
 

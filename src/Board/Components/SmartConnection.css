@@ -8,3 +8,12 @@ path.sub {
   stroke-dasharray: 0, 8;
   stroke-width: 4px;
 }
+line {
+  stroke: black;
+  stroke-width: 4px;
+}
+line.sub {
+  stroke-linecap: round;
+  stroke-dasharray: 0, 8;
+  stroke-width: 4px;
+}

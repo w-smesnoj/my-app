@@ -3,7 +3,7 @@ import './Board.css';
 import { items } from '../configs/items.js';
 import ItemEditor from './Components/ItemEditor.js';
 import Shape from './Components/Shape.js';
-import SmartBezier from './Components/SmartBezier.js';
+import SmartConnection from './Components/SmartConnection.js';
 
 export default class Board extends React.Component {
   constructor(props) {
@@ -66,7 +66,7 @@ export default class Board extends React.Component {
 
   render() {
     let shapes = [];
-    let smartBezier = [];
+    let smartConnections = [];
 
     this.state.items.forEach((item) => {
       const ref = React.createRef();
@@ -82,12 +82,13 @@ export default class Board extends React.Component {
             />
           );
           break;
-        case 'smart-bezier':
+        case 'smart-connection':
           const A = this.state.items.find((i) => i.id === item.from.id);
           const B = this.state.items.find((i) => i.id === item.to.id);
-          smartBezier.push(
-            <SmartBezier
+          smartConnections.push(
+            <SmartConnection
               id={item.id}
+              form={item.form}
               from={A}
               to={B}
               key={item.id}
@@ -111,7 +112,7 @@ export default class Board extends React.Component {
         />
         <div className='board'>
           {shapes}
-          <svg onClick={(e) => this.clearFocus(e)}>{smartBezier}</svg>
+          <svg onClick={(e) => this.clearFocus(e)}>{smartConnections}</svg>
         </div>
       </div>
     );
