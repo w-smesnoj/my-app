@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Todo
 
-- [ ] Refactor into different files
+- [x] Refactor into different files
 - [ ] Editor
   - [ ] Resize Shape
   - [ ] Create Line from Shape

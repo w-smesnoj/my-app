@@ -1,0 +1,10 @@
+path {
+  stroke: #2d9bf0;
+  stroke-width: 4px;
+  fill: transparent;
+}
+path.sub {
+  stroke-linecap: round;
+  stroke-dasharray: 0, 8;
+  stroke-width: 4px;
+}
