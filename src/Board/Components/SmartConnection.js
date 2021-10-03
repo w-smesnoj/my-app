@@ -2,6 +2,29 @@ import React from 'react';
 import './SmartConnection.css';
 
 export default class SmartBezier extends React.Component {
+  constructor(props) {
+    super(props);
+    this.myRef = React.createRef();
+  }
+  componentDidMount() {
+    this.updateDimAndPos();
+  }
+  updateDimAndPos() {
+    const rect = this.myRef.current.getBoundingClientRect();
+    this.props.setDim(this.props.id, {
+      w: rect.width,
+      h: rect.height,
+    });
+    this.props.setPos(this.props.id, {
+      x: rect.x,
+      y: rect.y,
+    });
+  }
+  onClick(e) {
+    this.updateDimAndPos();
+    this.props.onClick(e);
+  }
+
   render() {
     const A = this.props.from;
     const B = this.props.to;
@@ -45,8 +68,8 @@ export default class SmartBezier extends React.Component {
         return (
           <path
             d={`M ${start} ${bezier}, ${end}`}
-            ref={this.props.setRef}
-            onClick={this.props.onClick}
+            ref={this.myRef}
+            onClick={(e) => this.onClick(e)}
             className={this.props.className}
             id={this.props.id}
           ></path>
@@ -57,7 +80,8 @@ export default class SmartBezier extends React.Component {
         return (
           <line
             id={this.props.id}
-            onClick={this.props.onClick}
+            ref={this.myRef}
+            onClick={(e) => this.onClick(e)}
             className={this.props.className}
             x1={a.x}
             y1={a.y}

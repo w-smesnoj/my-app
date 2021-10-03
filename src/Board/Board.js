@@ -63,6 +63,18 @@ export default class Board extends React.Component {
     };
     this.setState({ items });
   }
+  setDim(id, dim) {
+    const items = [...this.state.items];
+    const item = items.find((item) => item.id === id);
+    item.dim = dim;
+    this.setState({ items });
+  }
+  setPos(id, pos) {
+    const items = [...this.state.items];
+    const item = items.find((item) => item.id === id);
+    item.pos = pos;
+    this.setState({ items });
+  }
 
   render() {
     let shapes = [];
@@ -92,6 +104,10 @@ export default class Board extends React.Component {
               from={A}
               to={B}
               key={item.id}
+              dim={item.dim}
+              pos={item.pos}
+              setDim={(id, dim) => this.setDim(id, dim)}
+              setPos={(id, pos) => this.setPos(id, pos)}
               setRef={ref}
               onClick={(e) => this.focusItem(e, item, ref)}
               className={item.className}

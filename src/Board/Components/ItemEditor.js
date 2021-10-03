@@ -13,10 +13,21 @@ export default class ItemEditor extends React.Component {
 
     const change = this.props.handleChange;
 
+    let controls = null;
+
+    switch (item.type) {
+      case 'smart-connection':
+        break;
+      case 'shape':
+      default:
+        controls = <button onClick={(e) => change({ type: 'bold' })}>B</button>;
+        break;
+    }
+
     return (
       <div>
         <div className='editor' style={{ transform: transform }}>
-          <button onClick={(e) => change({ type: 'bold' })}>B</button>
+          {controls}
         </div>
         <Draggable
           position={item.pos}
