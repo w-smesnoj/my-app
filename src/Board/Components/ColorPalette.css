@@ -1,0 +1,12 @@
+.color-palette {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 0.7rem 0rem;
+  gap: 0.4rem;
+}
+.color-palette button {
+  padding: 0rem;
+}
+.color-palette button > span {
+  font-size: 1.8rem;
+}

@@ -13,3 +13,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.material-icons {
+  display: block;
+}
+.material-icons-outlined {
+  display: block;
+}

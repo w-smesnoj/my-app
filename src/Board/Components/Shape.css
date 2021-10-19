@@ -1,14 +1,6 @@
 .shape {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: inset 0px 0px 0px 2px black;
-}
-.shape.main {
-  background: hsl(58deg 99% 59%);
-}
-.shape.sub {
-  background: #f7de96;
-  font-size: 0.8em;
   font-weight: 500;
+  padding: 0.5rem;
+  box-sizing: border-box;
 }

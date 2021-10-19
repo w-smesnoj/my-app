@@ -13,19 +13,22 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
   - [ ] Text
     - [ ] Font
     - [ ] Size
-    - [ ] Style
+    - [x] Style
       - [x] Bold
-      - [ ] Italics
-      - [ ] Underline
-      - [ ] Striketrough
-    - [ ] Alignment
-      - [ ] Left/Middle/Right
-      - [ ] Top/Middle/Bottom
+      - [x] Italics
+      - [x] Underline
+      - [x] Striketrough
+    - [x] Alignment
+      - [x] Left/Middle/Right
+      - [x] Top/Middle/Bottom
     - [ ] Link
-    - [ ] Color
+    - [x] Color
     - [ ] Marker
-  - [ ] Shape Border (Type/Color/Thicknes)
-  - [ ] Shape Color
+  - [ ] Shape Border
+    - [ ] Type
+    - [x] Color
+    - [ ] Thickness
+  - [x] Shape Color
 - [ ] Line Edits
   - [ ] Position Draggable
   - [ ] Style of Ends

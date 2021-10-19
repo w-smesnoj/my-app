@@ -35,6 +35,7 @@ export default class Board extends React.Component {
         ref: ref.current,
       },
     });
+    // console.log(this.state.focusedItem, 'i');
   }
 
   handleChange(e) {
@@ -45,7 +46,7 @@ export default class Board extends React.Component {
 
     switch (e.type) {
       case 'bold':
-        item.text.bold = !item.text.bold;
+        item.text.style.bold = !item.text.style.bold;
         break;
       default:
         return;
@@ -73,6 +74,13 @@ export default class Board extends React.Component {
     const items = [...this.state.items];
     const item = items.find((item) => item.id === id);
     item.pos = pos;
+    this.setState({ items });
+  }
+
+  applyItemChanges(item) {
+    const items = [...this.state.items];
+    let index = items.findIndex((i) => i.id === item.id);
+    items[index] = item;
     this.setState({ items });
   }
 
@@ -125,6 +133,7 @@ export default class Board extends React.Component {
           item={this.state.focusedItem}
           handleChange={(e) => this.handleChange(e, this.state.focusedItem)}
           handleDrag={(e) => this.handleDrag(e)}
+          applyItemChanges={(item) => this.applyItemChanges(item)}
         />
         <div className='board'>
           {shapes}

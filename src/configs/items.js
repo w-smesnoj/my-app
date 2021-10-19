@@ -12,9 +12,20 @@ export const items = [
     },
     text: {
       data: 'Internet',
-      bold: true,
+      style: {
+        bold: false,
+        fontSize: '16px',
+        italic: false,
+        underline: false,
+        strikethrough: false,
+        align: 'center',
+        alignVertical: 'center',
+      },
     },
-    className: 'main',
+    style: {
+      backgroundColor: '#fef72f',
+      borderColor: '#27262b',
+    },
   },
   {
     type: 'shape',
@@ -29,9 +40,20 @@ export const items = [
     },
     text: {
       data: 'HTML',
-      bold: true,
+      style: {
+        bold: false,
+        fontSize: '16px',
+        italic: false,
+        underline: false,
+        strikethrough: false,
+        align: 'center',
+        alignVertical: 'center',
+      },
     },
-    className: 'main',
+    style: {
+      backgroundColor: '#fef72f',
+      borderColor: '#27262b',
+    },
   },
   {
     type: 'smart-connection',
@@ -58,9 +80,20 @@ export const items = [
     },
     text: {
       data: 'How does the Internet work?',
-      bold: false,
+      style: {
+        bold: false,
+        fontSize: '16px',
+        italic: false,
+        underline: false,
+        strikethrough: false,
+        align: 'center',
+        alignVertical: 'center',
+      },
     },
-    className: 'sub',
+    style: {
+      backgroundColor: '#f7df97',
+      borderColor: '#27262b',
+    },
   },
   {
     type: 'shape',
@@ -75,9 +108,20 @@ export const items = [
     },
     text: {
       data: 'What is HTTP?',
-      bold: false,
+      style: {
+        bold: false,
+        fontSize: '16px',
+        italic: false,
+        underline: false,
+        strikethrough: false,
+        align: 'center',
+        alignVertical: 'center',
+      },
     },
-    className: 'sub',
+    style: {
+      backgroundColor: '#f7df97',
+      borderColor: '#27262b',
+    },
   },
   {
     type: 'shape',
@@ -92,9 +136,20 @@ export const items = [
     },
     text: {
       data: 'Browsers and how they work?',
-      bold: false,
+      style: {
+        bold: false,
+        fontSize: '16px',
+        italic: false,
+        underline: false,
+        strikethrough: false,
+        align: 'center',
+        alignVertical: 'center',
+      },
     },
-    className: 'sub',
+    style: {
+      backgroundColor: '#f7df97',
+      borderColor: '#27262b',
+    },
   },
   {
     type: 'smart-connection',
@@ -145,9 +200,20 @@ export const items = [
     },
     text: {
       data: 'DNS and how it works?',
-      bold: false,
+      style: {
+        bold: false,
+        fontSize: '16px',
+        italic: false,
+        underline: false,
+        strikethrough: false,
+        align: 'center',
+        alignVertical: 'center',
+      },
     },
-    className: 'sub',
+    style: {
+      backgroundColor: '#f7df97',
+      borderColor: '#27262b',
+    },
   },
   {
     type: 'shape',
@@ -162,9 +228,20 @@ export const items = [
     },
     text: {
       data: 'What is Domain Name?',
-      bold: false,
+      style: {
+        bold: false,
+        fontSize: '16px',
+        italic: false,
+        underline: false,
+        strikethrough: false,
+        align: 'center',
+        alignVertical: 'center',
+      },
     },
-    className: 'sub',
+    style: {
+      backgroundColor: '#f7df97',
+      borderColor: '#27262b',
+    },
   },
   {
     type: 'shape',
@@ -179,9 +256,20 @@ export const items = [
     },
     text: {
       data: 'What is hosting?',
-      bold: false,
+      style: {
+        bold: false,
+        fontSize: '16px',
+        italic: false,
+        underline: false,
+        strikethrough: false,
+        align: 'center',
+        alignVertical: 'center',
+      },
     },
-    className: 'sub',
+    style: {
+      backgroundColor: '#f7df97',
+      borderColor: '#27262b',
+    },
   },
   {
     type: 'smart-connection',
