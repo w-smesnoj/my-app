@@ -9,36 +9,47 @@ export default class Shape extends React.Component {
       height: cfg.dim.h,
       transform: `translate(${cfg.pos.x}px, ${cfg.pos.y}px) `,
     };
-    const textStyle = cfg.text.style;
-    const underline = textStyle.underline ? 'underline' : '';
-    const strikethrough = textStyle.strikethrough ? 'line-through' : '';
 
-    const align = {
-      left: 'start',
-      top: 'start',
-      center: 'center',
-      right: 'end',
-      bottom: 'end',
-    };
-    const style = {
-      fontWeight: textStyle.bold ? 'bold' : null,
-      textDecoration: `${underline} ${strikethrough}`,
-      fontStyle: textStyle.italic ? 'italic' : null,
-      fontSize: textStyle.fontSize,
-      boxShadow: `inset 0px 0px 0px 2px ${cfg.style.borderColor}`,
-      background: cfg.style.backgroundColor,
-      justifyContent: align[textStyle.align],
-      alignItems: align[textStyle.alignVertical],
-    };
+    const textConfig = cfg?.text?.style;
+    let textStyle;
+    if (textConfig) {
+      const align = {
+        left: 'start',
+        top: 'start',
+        center: 'center',
+        right: 'end',
+        bottom: 'end',
+      };
+
+      const underline = textConfig.underline ? 'underline' : '';
+      const strikethrough = textConfig.strikethrough ? 'line-through' : '';
+      textStyle = {
+        fontWeight: textConfig.bold ? 'bold' : null,
+        textDecoration: `${underline} ${strikethrough}`,
+        fontStyle: textConfig.italic ? 'italic' : null,
+        fontSize: textConfig.fontSize,
+
+        justifyContent: align[textConfig.align],
+        alignItems: align[textConfig.alignVertical],
+      };
+    }
+    let shapeStyle;
+    if (cfg.style) {
+      shapeStyle = {
+        boxShadow: `inset 0px 0px 0px 2px ${cfg.style.borderColor}`,
+        background: cfg.style.backgroundColor,
+      };
+    }
+
     return (
       <div
         id={this.props.id}
-        style={{ ...shapeDimensions, ...style }}
+        style={{ ...shapeDimensions, ...shapeStyle, ...textStyle }}
         ref={this.props.setRef}
         onClick={this.props.onClick}
         className='shape'
       >
-        {cfg.text.data}
+        {cfg?.text?.data}
       </div>
     );
   }

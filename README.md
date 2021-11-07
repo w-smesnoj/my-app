@@ -6,7 +6,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 - [x] Refactor into different files
 - [ ] Editor
-  - [ ] Resize Shape
+  - [x] Resize Shape
   - [ ] Create Line from Shape
 - [ ] Group Selector
 - [ ] Shape Edits

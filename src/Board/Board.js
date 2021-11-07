@@ -53,17 +53,6 @@ export default class Board extends React.Component {
     }
     this.setState({ items });
   }
-  handleDrag(e) {
-    const items = [...this.state.items];
-    const item = items.find(
-      (item) => item.id === this.state.focusedItem.item.id
-    );
-    item.pos = {
-      x: e.clientX - e.offsetX,
-      y: e.clientY - e.offsetY,
-    };
-    this.setState({ items });
-  }
   setDim(id, dim) {
     const items = [...this.state.items];
     const item = items.find((item) => item.id === id);
@@ -83,6 +72,12 @@ export default class Board extends React.Component {
     items[index] = item;
     this.setState({ items });
   }
+  // controlledDrag(e, position, item) {
+  //   const items = [...this.state.items];
+  //   const itemx = items.find((iteme) => iteme.id === item.id);
+  //   itemx.pos = position;
+  //   this.setState({ items });
+  // }
 
   render() {
     let shapes = [];
@@ -131,9 +126,13 @@ export default class Board extends React.Component {
       <div>
         <ItemEditor
           item={this.state.focusedItem}
-          handleChange={(e) => this.handleChange(e, this.state.focusedItem)}
-          handleDrag={(e) => this.handleDrag(e)}
           applyItemChanges={(item) => this.applyItemChanges(item)}
+          onControlledDrag={(e, position, item) =>
+            this.setPos(item.id, position)
+          }
+          onControlledResizeDrag={(e, dimensions, item) =>
+            this.setDim(item.id, dimensions)
+          }
         />
         <div className='board'>
           {shapes}

@@ -33,10 +33,9 @@ export default class ColorPalette extends React.Component {
     };
   }
   render() {
-    console.log(this.props);
     const colors = this.state.colors.map((color) => {
       return (
-        <button onClick={() => this.props.onColorChange(color)}>
+        <button onClick={() => this.props.onColorChange(color)} key={color}>
           <Ic
             style={{
               color: color,
