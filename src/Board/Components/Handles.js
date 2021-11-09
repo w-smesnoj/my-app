@@ -43,21 +43,6 @@ export default class Handles extends React.Component {
         {/* {handles} */}
 
         <Draggable
-          position={item.pos}
-          onDrag={this.onControlledDrag}
-          onStop={this.props.onControlledDragStop}
-          grid={[25, 25]}
-        >
-          <div
-            className='highlight-container'
-            style={{
-              width: `${item.dim.w}px`,
-              height: `${item.dim.h}px`,
-            }}
-          ></div>
-        </Draggable>
-
-        <Draggable
           position={resizeHandlePos}
           onDrag={this.onControlledResizeDrag}
           grid={[25, 25]}

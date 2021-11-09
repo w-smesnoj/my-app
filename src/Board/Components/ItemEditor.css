@@ -76,3 +76,19 @@
 .font-family > button {
   font-size: 1rem;
 }
+.highlight-container {
+  position: absolute;
+  outline: 1px solid hsl(213deg 82% 63%);
+  z-index: 4;
+}
+.edit-text {
+  position: absolute;
+  outline: 2px solid red;
+  display: block;
+  z-index: 6;
+  margin: 0;
+  padding: 0.4rem;
+  box-sizing: border-box;
+  outline: 0;
+  border: 0;
+}

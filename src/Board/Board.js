@@ -72,6 +72,13 @@ export default class Board extends React.Component {
     items[index] = item;
     this.setState({ items });
   }
+  changeText(text) {
+    const items = [...this.state.items];
+    let index = items.findIndex((i) => i.id === this.state.focusedItem.item.id);
+    items[index] = this.state.focusedItem.item;
+    items[index].text.data = text;
+    this.setState({ items });
+  }
   // controlledDrag(e, position, item) {
   //   const items = [...this.state.items];
   //   const itemx = items.find((iteme) => iteme.id === item.id);
@@ -124,16 +131,19 @@ export default class Board extends React.Component {
 
     return (
       <div>
-        <ItemEditor
-          item={this.state.focusedItem}
-          applyItemChanges={(item) => this.applyItemChanges(item)}
-          onControlledDrag={(e, position, item) =>
-            this.setPos(item.id, position)
-          }
-          onControlledResizeDrag={(e, dimensions, item) =>
-            this.setDim(item.id, dimensions)
-          }
-        />
+        {this.state.focusedItem.item ? (
+          <ItemEditor
+            item={this.state.focusedItem}
+            applyItemChanges={(item) => this.applyItemChanges(item)}
+            onControlledDrag={(e, position, item) =>
+              this.setPos(item.id, position)
+            }
+            onControlledResizeDrag={(e, dimensions, item) =>
+              this.setDim(item.id, dimensions)
+            }
+            onChangeText={(text) => this.changeText(text)}
+          />
+        ) : null}
         <div className='board'>
           {shapes}
           <svg onClick={(e) => this.clearFocus(e)}>{smartConnections}</svg>
