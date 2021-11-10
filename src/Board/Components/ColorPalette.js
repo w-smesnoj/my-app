@@ -34,20 +34,19 @@ export default class ColorPalette extends React.Component {
   }
   render() {
     const colors = this.state.colors.map((color) => {
+      const selected =
+        this.props.selectedColor === color.toLowerCase()
+          ? "boxShadow: '#5399ee 0px 0px 0px 2px'"
+          : null;
       return (
-        <button onClick={() => this.props.onColorChange(color)} key={color}>
-          <Ic
-            style={{
-              color: color,
-              textShadow:
-                this.props.selectedColor === color.toLowerCase()
-                  ? `-1px -1px 0 #5399ee, 1px -1px 0 #5399ee, -1px 1px 0 #5399ee, 1px 1px 0 #5399ee`
-                  : null,
-            }}
-          >
-            circle
-          </Ic>
-        </button>
+        <button
+          style={{
+            backgroundColor: color,
+            boxShadow: selected,
+          }}
+          onClick={() => this.props.onColorChange(color)}
+          key={color}
+        ></button>
       );
     });
 
