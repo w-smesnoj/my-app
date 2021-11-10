@@ -1,6 +1,5 @@
 import React from 'react';
 import './ColorPalette.css';
-import Ic from './ic.js';
 export default class ColorPalette extends React.Component {
   constructor(props) {
     super(props);
@@ -36,7 +35,7 @@ export default class ColorPalette extends React.Component {
     const colors = this.state.colors.map((color) => {
       const selected =
         this.props.selectedColor === color.toLowerCase()
-          ? "boxShadow: '#5399ee 0px 0px 0px 2px'"
+          ? '#5399ee 0px 0px 0px 2px'
           : null;
       return (
         <button
