@@ -27,7 +27,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
   - [ ] Shape Border
     - [ ] Type
     - [x] Color
-    - [ ] Thickness
+    - [x] Thickness
+    - [x] Opacity
   - [x] Shape Color
 - [ ] Line Edits
   - [ ] Position Draggable

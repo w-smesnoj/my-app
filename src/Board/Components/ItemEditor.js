@@ -3,7 +3,6 @@ import './ItemEditor.css';
 import EditorBar from './EditorBar';
 import Handles from './Handles';
 import Draggable from 'react-draggable';
-import Shape from './Shape.js';
 
 export default class ItemEditor extends React.Component {
   constructor(props) {

@@ -1,5 +1,6 @@
 import React from 'react';
 import './Shape.css';
+import hexToHsl from 'hex-to-hsl';
 
 export default class Shape extends React.Component {
   render() {
@@ -34,9 +35,15 @@ export default class Shape extends React.Component {
       };
     }
     let shapeStyle;
+    const borderSizeScale = [0, 1, 2, 4, 7, 10, 14, 19, 26];
+    const hsl = hexToHsl(cfg.style.borderColor);
+    const borderOpacity = cfg.style.borderOpacity * 10;
+    let borderColor = `hsl(${hsl[0]}deg ${hsl[1]}% ${hsl[2]}% / ${borderOpacity}%)`;
     if (cfg.style) {
       shapeStyle = {
-        boxShadow: `inset 0px 0px 0px 2px ${cfg.style.borderColor}`,
+        boxShadow: `inset 0px 0px 0px ${
+          borderSizeScale[cfg.style.borderSize]
+        }px ${borderColor}`,
         background: cfg.style.backgroundColor,
       };
     }

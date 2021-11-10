@@ -13,6 +13,8 @@ export default class EditorBar extends React.Component {
     this.state = {};
     this.handleFontSizeChange = this.handleFontSizeChange.bind(this);
     this.handleFontFamilyChange = this.handleFontFamilyChange.bind(this);
+    this.handleBorderSizeChange = this.handleBorderSizeChange.bind(this);
+    this.handleBorderOpacityChange = this.handleBorderOpacityChange.bind(this);
   }
 
   toggleTextStyle(type) {
@@ -34,6 +36,18 @@ export default class EditorBar extends React.Component {
       default:
         break;
     }
+    this.props.onApplyItemChanges(item);
+  }
+  handleBorderOpacityChange(e) {
+    console.log(e.target.value);
+    let item = Object.assign({}, this.props.item);
+    item.style.borderOpacity = e.target.value;
+    this.props.onApplyItemChanges(item);
+  }
+  handleBorderSizeChange(e) {
+    console.log(e.target.value);
+    let item = Object.assign({}, this.props.item);
+    item.style.borderSize = e.target.value;
     this.props.onApplyItemChanges(item);
   }
   handleFontFamilyChange(e) {
@@ -158,7 +172,35 @@ export default class EditorBar extends React.Component {
     if (this.props.item?.style) {
       controls.push(
         <div className='group'>
-          <BarButton io='trip_origin' iconColor={item.style.borderColor}>
+          <BarButton
+            io='trip_origin'
+            iconColor={item.style.borderColor}
+            className='row'
+          >
+            <div className='group slider row'>
+              <input
+                type='range'
+                id='thickness'
+                name='thickness'
+                min='0'
+                max='9'
+                value={item.style.borderSize}
+                onChange={this.handleBorderSizeChange}
+              ></input>
+              <label for='thickness'>Thickness</label>
+            </div>
+            <div className='group slider row'>
+              <input
+                type='range'
+                id='opacity'
+                name='opacity'
+                min='0'
+                max='10'
+                value={item.style.borderOpacity}
+                onChange={this.handleBorderOpacityChange}
+              ></input>
+              <label for='thickness'>Opacity</label>
+            </div>
             <div className='group'>
               <ColorPalette
                 selectedColor={item.style.borderColor}

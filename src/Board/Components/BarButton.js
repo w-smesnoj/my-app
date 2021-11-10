@@ -23,7 +23,9 @@ export default class BarButton extends React.Component {
           <Io style={iconStyle}>{this.props.io}</Io>
         </button>
         {this.state.visible ? (
-          <div className='context control-groups'>{this.props.children}</div>
+          <div className={`context control-groups ${this.props.className}`}>
+            {this.props.children}
+          </div>
         ) : null}
       </div>
     );
