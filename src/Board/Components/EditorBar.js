@@ -1,5 +1,6 @@
 import React from 'react';
 import './ItemEditor.css';
+import './EditorBar.css';
 import ColorPalette from './ColorPalette';
 
 import Ic from './ic.js';
@@ -10,6 +11,8 @@ export default class EditorBar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
+    this.handleFontSizeChange = this.handleFontSizeChange.bind(this);
+    this.handleFontFamilyChange = this.handleFontFamilyChange.bind(this);
   }
 
   toggleTextStyle(type) {
@@ -31,6 +34,17 @@ export default class EditorBar extends React.Component {
       default:
         break;
     }
+    this.props.onApplyItemChanges(item);
+  }
+  handleFontFamilyChange(e) {
+    let item = Object.assign({}, this.props.item);
+    item.text.style.fontFamily = e.target.value;
+    this.props.onApplyItemChanges(item);
+  }
+  handleFontSizeChange(e) {
+    let item = Object.assign({}, this.props.item);
+    const size = e.target.value;
+    item.text.style.fontSize = size.substring(0, size.length - 2);
     this.props.onApplyItemChanges(item);
   }
   formatAlign(alignment) {
@@ -56,17 +70,43 @@ export default class EditorBar extends React.Component {
 
   render() {
     if (!this.props.visible) {
-      return <div></div>;
+      return null;
     }
     const item = this.props.item;
-
-    const x = item?.pos.x + item?.dim.w / 2;
-    const y = item?.pos.y;
-    const position = `translate(${x}px,${y}px) translate(-50%, -50%) translateY(-2.7rem)`;
 
     let controls = [];
 
     if (this.props.item?.text) {
+      let fontSizeValues = [10, 14, 16, 18, 24, 36, 48, 64, 80, 144, 288];
+      let fontFamilyValues = ['Inter', 'Arial', 'Avenir'];
+      controls.push(
+        <div className='group'>
+          <div className='font-family'>
+            <select
+              value={item.text.style.fontFamily}
+              onChange={this.handleFontFamilyChange}
+            >
+              {fontFamilyValues.map((value) => (
+                <option key={value}>{value}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+      );
+      controls.push(
+        <div className='group'>
+          <div className='font-size'>
+            <select
+              value={`${item.text.style.fontSize}px`}
+              onChange={this.handleFontSizeChange}
+            >
+              {fontSizeValues.map((value) => (
+                <option key={value}>{value}px</option>
+              ))}
+            </select>
+          </div>
+        </div>
+      );
       controls.push(
         <div className='group'>
           <BarButton ic='text_format'>
@@ -86,9 +126,6 @@ export default class EditorBar extends React.Component {
             </div>
           </BarButton>
 
-          {/* <BarButton ic='text_format'>
-           
-          </BarButton> */}
           <BarButton ic='format_align_center'>
             <div>
               <div className='group'>
@@ -149,6 +186,9 @@ export default class EditorBar extends React.Component {
         </div>
       );
     }
+    const x = item?.pos.x + item?.dim.w / 2;
+    const y = item?.pos.y;
+    const position = `translate(${x}px,${y}px) translate(-50%, -50%) translateY(-2.7rem)`;
     return (
       <div>
         <div className='editor' style={{ transform: position }}>

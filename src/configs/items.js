@@ -14,7 +14,8 @@ export const items = [
       data: 'Internet',
       style: {
         bold: false,
-        fontSize: '16px',
+        fontFamily: 'Inter',
+        fontSize: '16',
         italic: false,
         underline: false,
         strikethrough: false,
@@ -42,7 +43,8 @@ export const items = [
       data: 'HTML',
       style: {
         bold: false,
-        fontSize: '16px',
+        fontFamily: 'Inter',
+        fontSize: '16',
         italic: false,
         underline: false,
         strikethrough: false,
@@ -82,7 +84,8 @@ export const items = [
       data: 'How does the Internet work?',
       style: {
         bold: false,
-        fontSize: '16px',
+        fontFamily: 'Inter',
+        fontSize: '16',
         italic: false,
         underline: false,
         strikethrough: false,
@@ -110,7 +113,8 @@ export const items = [
       data: 'What is HTTP?',
       style: {
         bold: false,
-        fontSize: '16px',
+        fontFamily: 'Inter',
+        fontSize: '16',
         italic: false,
         underline: false,
         strikethrough: false,
@@ -138,7 +142,8 @@ export const items = [
       data: 'Browsers and how they work?',
       style: {
         bold: false,
-        fontSize: '16px',
+        fontFamily: 'Inter',
+        fontSize: '16',
         italic: false,
         underline: false,
         strikethrough: false,
@@ -202,7 +207,8 @@ export const items = [
       data: 'DNS and how it works?',
       style: {
         bold: false,
-        fontSize: '16px',
+        fontFamily: 'Inter',
+        fontSize: '16',
         italic: false,
         underline: false,
         strikethrough: false,
@@ -230,7 +236,8 @@ export const items = [
       data: 'What is Domain Name?',
       style: {
         bold: false,
-        fontSize: '16px',
+        fontFamily: 'Inter',
+        fontSize: '16',
         italic: false,
         underline: false,
         strikethrough: false,
@@ -258,7 +265,8 @@ export const items = [
       data: 'What is hosting?',
       style: {
         bold: false,
-        fontSize: '16px',
+        fontFamily: 'Inter',
+        fontSize: '16',
         italic: false,
         underline: false,
         strikethrough: false,

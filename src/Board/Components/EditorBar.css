@@ -1,0 +1,46 @@
+.font-size {
+  display: grid;
+  grid-template-areas:
+    'num inc'
+    'num dec';
+}
+select {
+  padding: 0;
+  margin: 0;
+  /* width: 3em; */
+  text-align: center;
+  border: 0;
+  font-size: 0.95rem;
+  font-family: 'Inter';
+  grid-area: num;
+  /* -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: ''; */
+  font-weight: 500;
+  letter-spacing: 0.02rem;
+}
+.font-size select::-ms-expand {
+  display: none;
+}
+.font-size > button {
+  padding: 0;
+  height: fit-content;
+}
+.inc {
+  grid-area: inc;
+  align-self: end;
+}
+.dec {
+  grid-area: dec;
+  align-self: start;
+}
+.font-size > button > span {
+  font-size: 0.9rem;
+}
+/* input::-webkit-calendar-picker-indicator {
+  display: none;
+}
+input:hover::-webkit-calendar-picker-indicator {
+  display: none;
+} */

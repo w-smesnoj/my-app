@@ -27,8 +27,8 @@ export default class Shape extends React.Component {
         fontWeight: textConfig.bold ? 'bold' : null,
         textDecoration: `${underline} ${strikethrough}`,
         fontStyle: textConfig.italic ? 'italic' : null,
-        fontSize: textConfig.fontSize,
-
+        fontSize: `${textConfig.fontSize}px`,
+        fontFamily: textConfig.fontFamily,
         justifyContent: align[textConfig.align],
         alignItems: align[textConfig.alignVertical],
       };
