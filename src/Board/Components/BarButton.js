@@ -19,8 +19,8 @@ export default class BarButton extends React.Component {
     return (
       <div>
         <button onClick={(e) => this.toggleVisibility()}>
-          <Ic style={iconStyle}>{this.props.ic}</Ic>
-          <Io style={iconStyle}>{this.props.io}</Io>
+          {this.props.ic ? <Ic style={iconStyle}>{this.props.ic}</Ic> : null}
+          {this.props.io ? <Io style={iconStyle}>{this.props.io}</Io> : null}
         </button>
         {this.state.visible ? (
           <div className={`context control-groups ${this.props.className}`}>

@@ -2,6 +2,7 @@ import React from 'react';
 import './ItemEditor.css';
 import './EditorBar.css';
 import ColorPalette from './ColorPalette';
+import Slider from './Slider';
 
 import Ic from './ic.js';
 
@@ -177,29 +178,19 @@ export default class EditorBar extends React.Component {
             iconColor={item.style.borderColor}
             className='row'
           >
-            <div className='group slider row'>
-              <input
-                type='range'
-                id='thickness'
-                name='thickness'
-                min='0'
-                max='9'
-                value={item.style.borderSize}
+            <div className='group row'>
+              <Slider
+                label='Thickness'
+                vals={[0, 9]}
+                val={item.style.borderSize}
                 onChange={this.handleBorderSizeChange}
-              ></input>
-              <label for='thickness'>Thickness</label>
-            </div>
-            <div className='group slider row'>
-              <input
-                type='range'
-                id='opacity'
-                name='opacity'
-                min='0'
-                max='10'
-                value={item.style.borderOpacity}
+              />
+              <Slider
+                label='Opacity'
+                vals={[0, 10]}
+                val={item.style.borderOpacity}
                 onChange={this.handleBorderOpacityChange}
-              ></input>
-              <label for='thickness'>Opacity</label>
+              />
             </div>
             <div className='group'>
               <ColorPalette

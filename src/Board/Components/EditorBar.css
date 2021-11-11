@@ -47,11 +47,3 @@ input:hover::-webkit-calendar-picker-indicator {
 .row {
   grid-auto-flow: row;
 }
-.slider {
-  gap: 0.3rem;
-  padding: 0.9rem;
-}
-.slider > label {
-  text-align: left;
-  font-size: 0.75rem;
-}

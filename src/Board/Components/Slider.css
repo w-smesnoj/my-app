@@ -1,0 +1,22 @@
+.slider {
+  display: grid;
+  gap: 0.4rem;
+  grid-template-areas: 'input input' 'label span';
+}
+.slider > span,
+.slider > label {
+  /* text-align: left; */
+  font-size: 0.75rem;
+}
+.slider > span {
+  grid-area: span;
+  font-weight: 500;
+  justify-self: end;
+}
+.slider > label {
+  grid-area: span;
+  justify-self: start;
+}
+.slider > input {
+  grid-area: input;
+}
