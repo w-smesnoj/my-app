@@ -28,6 +28,7 @@ export const items = [
       borderColor: '#27262b',
       borderSize: '2',
       borderOpacity: '10',
+      opacity: '9',
     },
   },
   {
@@ -59,6 +60,7 @@ export const items = [
       borderColor: '#27262b',
       borderSize: '2',
       borderOpacity: '10',
+      opacity: '9',
     },
   },
   {
@@ -102,6 +104,7 @@ export const items = [
       borderColor: '#27262b',
       borderSize: '2',
       borderOpacity: '10',
+      opacity: '9',
     },
   },
   {
@@ -133,6 +136,7 @@ export const items = [
       borderColor: '#27262b',
       borderSize: '2',
       borderOpacity: '10',
+      opacity: '9',
     },
   },
   {
@@ -164,6 +168,7 @@ export const items = [
       borderColor: '#27262b',
       borderSize: '2',
       borderOpacity: '10',
+      opacity: '9',
     },
   },
   {
@@ -231,6 +236,7 @@ export const items = [
       borderColor: '#27262b',
       borderSize: '2',
       borderOpacity: '10',
+      opacity: '9',
     },
   },
   {
@@ -262,6 +268,7 @@ export const items = [
       borderColor: '#27262b',
       borderSize: '2',
       borderOpacity: '10',
+      opacity: '9',
     },
   },
   {
@@ -293,6 +300,7 @@ export const items = [
       borderColor: '#27262b',
       borderSize: '2',
       borderOpacity: '10',
+      opacity: '9',
     },
   },
   {

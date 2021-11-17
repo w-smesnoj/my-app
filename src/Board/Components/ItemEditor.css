@@ -21,10 +21,10 @@
   overflow: hidden;
 }
 .group {
-  gap: 1em;
+  gap: 0.4rem;
   display: grid;
   grid-auto-flow: column;
-  padding: 0.9rem 0.8rem;
+  padding: 0.45rem 0.7rem;
   background: white;
 }
 .context button,
@@ -34,6 +34,7 @@
   padding: 0;
   color: hsl(202deg 100% 15%);
   cursor: pointer;
+  padding: 0.4rem;
 }
 .context button:hover,
 .editor button:hover {
@@ -42,9 +43,14 @@
 .context {
   z-index: 200;
   position: absolute;
-  transform: translateY(-3.15rem) translateX(-50%) translateX(1rem)
+  transform: translateY(-3rem) translateX(-50%) translateX(1rem)
     translateY(-100%);
   box-shadow: 0px 2px 6px -7px black;
+}
+.wrapper {
+  padding: 0.4rem;
+  display: grid;
+  gap: 0.4rem;
 }
 
 .font-size {
@@ -75,10 +81,14 @@
   position: absolute;
   outline: 2px solid red;
   display: block;
-  z-index: 6;
+  z-index: 7;
   margin: 0;
   padding: 0.4rem;
   box-sizing: border-box;
   outline: 0;
   border: 0;
+}
+.shape-drag-handle {
+  z-index: 7;
+  cursor: pointer;
 }

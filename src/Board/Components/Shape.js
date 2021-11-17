@@ -45,6 +45,7 @@ export default class Shape extends React.Component {
           borderSizeScale[cfg.style.borderSize]
         }px ${borderColor}`,
         background: cfg.style.backgroundColor,
+        opacity: `${cfg.style.opacity * 10}%`,
       };
     }
 

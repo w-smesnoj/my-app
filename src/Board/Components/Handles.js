@@ -1,6 +1,5 @@
 import React from 'react';
 import Draggable from 'react-draggable';
-import './Handles.css';
 
 export default class Handles extends React.Component {
   constructor(props) {

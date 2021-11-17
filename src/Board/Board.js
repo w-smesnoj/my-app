@@ -135,10 +135,8 @@ export default class Board extends React.Component {
           <ItemEditor
             item={this.state.focusedItem}
             applyItemChanges={(item) => this.applyItemChanges(item)}
-            onControlledDrag={(e, position, item) =>
-              this.setPos(item.id, position)
-            }
-            onControlledResizeDrag={(e, dimensions, item) =>
+            onShapeDrag={(e, position, item) => this.setPos(item.id, position)}
+            onShapeResize={(e, dimensions, item) =>
               this.setDim(item.id, dimensions)
             }
             onChangeText={(text) => this.changeText(text)}
