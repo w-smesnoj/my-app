@@ -7,6 +7,8 @@ import Select from './Select';
 import ColorPalette from './ColorPalette';
 import Slider from './Slider';
 import './Handles.css';
+import BtnCheckbox from './BtnCheckbox';
+
 export default class ItemEditor extends React.Component {
   constructor(props) {
     super(props);
@@ -167,9 +169,11 @@ export default class ItemEditor extends React.Component {
               <div className='group'>
                 {this.styles.map((style) => {
                   return (
-                    <button onClick={() => this.textStyle(style.value)}>
-                      <Ic>{style.ic}</Ic>
-                    </button>
+                    <BtnCheckbox
+                      value={item.text.style[style.value]}
+                      onChange={() => this.textStyle(style.value)}
+                      ic={style.ic}
+                    />
                   );
                 })}
               </div>

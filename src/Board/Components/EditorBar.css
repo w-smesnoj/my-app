@@ -47,3 +47,6 @@ input:hover::-webkit-calendar-picker-indicator {
 .row {
   grid-auto-flow: row;
 }
+.group button > span {
+  padding: 0.4rem;
+}
