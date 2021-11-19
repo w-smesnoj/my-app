@@ -130,6 +130,11 @@ export default class ItemEditor extends React.Component {
     item.style.backgroundColor = color;
     this.props.applyItemChanges(item);
   }
+  changeTextColor(color) {
+    let item = Object.assign({}, this.props.item);
+    item.text.style.color = color;
+    this.props.applyItemChanges(item);
+  }
   render() {
     const item = this.props.item;
     const pos = item.pos;
@@ -163,7 +168,7 @@ export default class ItemEditor extends React.Component {
             </div>
           </div>
           <div className='group'>
-            <BarButton ic='text_format'>
+            <BarButton ic='format_bold'>
               <div className='group'>
                 {this.styles.map((style) => {
                   return (
@@ -200,6 +205,16 @@ export default class ItemEditor extends React.Component {
                   <button onClick={() => this.formatAlignVertical('bottom')}>
                     <Ic>align_vertical_bottom</Ic>
                   </button>
+                </div>
+              </div>
+            </BarButton>
+            <BarButton ic='format_color_text'>
+              <div>
+                <div className='group'>
+                  <ColorPalette
+                    selectedColor={item.text.style.color}
+                    onColorChange={(color) => this.changeTextColor(color)}
+                  />
                 </div>
               </div>
             </BarButton>

@@ -35,6 +35,7 @@ export default class Shape extends React.Component {
         fontFamily: textConfig.fontFamily,
         justifyContent: align[textConfig.align],
         alignItems: align[textConfig.alignVertical],
+        color: textConfig.color,
       };
     }
     let shapeStyle;

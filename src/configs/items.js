@@ -21,6 +21,7 @@ export const items = [
         strikethrough: false,
         align: 'center',
         alignVertical: 'center',
+        color: '#27262b',
       },
     },
     style: {
@@ -53,6 +54,7 @@ export const items = [
         strikethrough: false,
         align: 'center',
         alignVertical: 'center',
+        color: '#27262b',
       },
     },
     style: {
@@ -97,6 +99,7 @@ export const items = [
         strikethrough: false,
         align: 'center',
         alignVertical: 'center',
+        color: '#27262b',
       },
     },
     style: {
@@ -129,6 +132,7 @@ export const items = [
         strikethrough: false,
         align: 'center',
         alignVertical: 'center',
+        color: '#27262b',
       },
     },
     style: {
@@ -161,6 +165,7 @@ export const items = [
         strikethrough: false,
         align: 'center',
         alignVertical: 'center',
+        color: '#27262b',
       },
     },
     style: {
@@ -229,6 +234,7 @@ export const items = [
         strikethrough: false,
         align: 'center',
         alignVertical: 'center',
+        color: '#27262b',
       },
     },
     style: {
@@ -261,6 +267,7 @@ export const items = [
         strikethrough: false,
         align: 'center',
         alignVertical: 'center',
+        color: '#27262b',
       },
     },
     style: {
@@ -293,6 +300,7 @@ export const items = [
         strikethrough: false,
         align: 'center',
         alignVertical: 'center',
+        color: '#27262b',
       },
     },
     style: {
