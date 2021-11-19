@@ -3,6 +3,9 @@ import './Shape.css';
 import hexToHsl from 'hex-to-hsl';
 
 export default class Shape extends React.Component {
+  handleContentChange(e) {
+    this.props.onChangeText(e.currentTarget.textContent);
+  }
   render() {
     const cfg = this.props.config;
     const shapeDimensions = {
@@ -56,6 +59,8 @@ export default class Shape extends React.Component {
         ref={this.props.setRef}
         onClick={this.props.onClick}
         className='shape'
+        contentEditable={this.props.editingText}
+        onInput={(e) => this.handleContentChange(e)}
       >
         {cfg?.text?.data}
       </div>

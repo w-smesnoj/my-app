@@ -14,16 +14,23 @@ export default class Board extends React.Component {
         item: null,
         txt: null,
       },
+      editingText: false,
+      textData: null,
     };
   }
 
   clearFocus(e) {
     if (e.currentTarget !== e.target) return;
+    if (this.state.editingText && this.state.textData) {
+      this.changeText(this.state.textData);
+    }
     this.setState({
       focusedItem: {
         item: null,
         txt: null,
       },
+      editingText: false,
+      textData: null,
     });
   }
   focusItem(e, item, ref) {
@@ -72,12 +79,18 @@ export default class Board extends React.Component {
     items[index] = item;
     this.setState({ items });
   }
+  textChangeFire(text) {
+    this.setState({ textData: text });
+  }
   changeText(text) {
     const items = [...this.state.items];
     let index = items.findIndex((i) => i.id === this.state.focusedItem.item.id);
     items[index] = this.state.focusedItem.item;
     items[index].text.data = text;
     this.setState({ items });
+  }
+  editingText(e) {
+    this.setState({ editingText: true });
   }
   // controlledDrag(e, position, item) {
   //   const items = [...this.state.items];
@@ -101,6 +114,8 @@ export default class Board extends React.Component {
               key={item.id}
               setRef={ref}
               onClick={(e) => this.focusItem(e, item, ref)}
+              editingText={this.state.editingText}
+              onChangeText={(text) => this.textChangeFire(text)}
             />
           );
           break;
@@ -139,7 +154,8 @@ export default class Board extends React.Component {
             onShapeResize={(e, dimensions, item) =>
               this.setDim(item.id, dimensions)
             }
-            onChangeText={(text) => this.changeText(text)}
+            onEditingText={(e) => this.editingText(e)}
+            editingText={this.state.editingText}
           />
         ) : null}
         <div className='board'>

@@ -7,9 +7,8 @@ export default class BtnCheckbox extends React.Component {
     return (
       <label className='btn-checkbox'>
         <input
-          name={this.props.value}
+          name={this.props.value.toString()}
           type='checkbox'
-          {...(this.props.value && 'checked')}
           checked={this.props.value}
           onChange={this.props.onChange}
         />

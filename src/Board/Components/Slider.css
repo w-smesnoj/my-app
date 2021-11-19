@@ -19,4 +19,5 @@
 }
 .slider > input {
   grid-area: input;
+  width: 100%;
 }

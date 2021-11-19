@@ -35,8 +35,9 @@ export default class ColorPalette extends React.Component {
     const colors = this.state.colors.map((color) => {
       const selected =
         this.props.selectedColor === color.toLowerCase()
-          ? '#5399ee 0px 0px 0px 2px'
-          : null;
+          ? 'white 0px 0px 0px 1.5px, 0px 0px 0px 3.5px rgb(83 153 238), inset 0px 0px 0px 1px #00000021'
+          : 'inset 0px 0px 0px 1px #00000021';
+
       return (
         <button
           style={{

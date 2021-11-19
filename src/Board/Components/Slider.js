@@ -14,7 +14,7 @@ export default class Slider extends React.Component {
           value={this.props.val}
           onChange={this.props.onChange}
         ></input>
-        <label for={this.props.label}>{this.props.label}</label>
+        <label htmlFor={this.props.label}>{this.props.label}</label>
         <span>{this.props.val}</span>
       </div>
     );

@@ -14,7 +14,7 @@ export default class ItemEditor extends React.Component {
     super(props);
     this.state = {
       visibleEditorBar: true,
-      editingText: false,
+      // editingText: false,
     };
     this.fontSizeValues = [10, 14, 16, 18, 24, 36, 48, 64, 80, 144, 288];
     this.fontFamilyValues = ['Inter', 'Arial', 'Avenir'];
@@ -47,11 +47,9 @@ export default class ItemEditor extends React.Component {
     this.props.onShapeDrag(e, pos, item);
     this.setState({ visibleEditorBar: false });
   }
-  makeTextEditable = () => {
-    this.setState({ editingText: true });
-  };
-  handleTextChange = (event) => {
-    this.props.onChangeText(event.target.value);
+  makeTextEditable = (e) => {
+    // this.setState({ editingText: true });
+    this.props.onEditingText(e);
   };
   textStyle(type) {
     let item = Object.assign({}, this.props.item);
@@ -259,39 +257,34 @@ export default class ItemEditor extends React.Component {
             </BarButton>
           </div>
         </EditorBar>
-        <Draggable
-          position={{
-            x: pos.x + dim.w,
-            y: pos.y + dim.h,
-          }}
-          onDrag={this.resizeShape}
-          grid={[25, 25]}
-          bounds={{ left: pos.x, top: pos.y }}
-        >
-          <div className='drag-handle'></div>
-        </Draggable>
-        <Draggable
-          position={pos}
-          onDrag={(e, pos) => this.dragShape(e, pos, item)}
-          onStop={() => this.setState({ visibleEditorBar: true })}
-          grid={[25, 25]}
-        >
-          <div
-            className='shape-drag-handle'
-            style={style}
-            onDoubleClick={this.makeTextEditable}
-          ></div>
-        </Draggable>
 
-        {this.state.editingText ? (
-          <input
-            type='text'
-            value={item.text.data}
-            className='edit-text'
-            style={{ ...style, ...item.text.style }}
-            onChange={this.handleTextChange}
-          />
-        ) : null}
+        {this.props.editingText ? null : (
+          <div>
+            <Draggable
+              position={{
+                x: pos.x + dim.w,
+                y: pos.y + dim.h,
+              }}
+              onDrag={this.resizeShape}
+              grid={[25, 25]}
+              bounds={{ left: pos.x, top: pos.y }}
+            >
+              <div className='drag-handle'></div>
+            </Draggable>
+            <Draggable
+              position={pos}
+              onDrag={(e, pos) => this.dragShape(e, pos, item)}
+              onStop={() => this.setState({ visibleEditorBar: true })}
+              grid={[25, 25]}
+            >
+              <div
+                className='shape-drag-handle'
+                style={style}
+                onDoubleClick={this.makeTextEditable}
+              ></div>
+            </Draggable>
+          </div>
+        )}
       </div>
     );
   }

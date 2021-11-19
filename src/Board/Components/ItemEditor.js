@@ -5,9 +5,6 @@ import EditorBar from './EditorBar';
 import ShapeEditor from './ShapeEditor';
 
 export default class ItemEditor extends React.Component {
-  componentWillUnmount() {
-    this.setState({ editingText: false });
-  }
   render() {
     const item = this.props.item.item;
     let style = {
@@ -15,6 +12,7 @@ export default class ItemEditor extends React.Component {
       width: `${item.dim.w}px`,
       height: `${item.dim.h}px`,
       position: 'absolute',
+      pointerEvents: 'none',
     };
     let editor;
 
@@ -29,6 +27,8 @@ export default class ItemEditor extends React.Component {
             }
             onShapeDrag={(e, pos, item) => this.props.onShapeDrag(e, pos, item)}
             onChangeText={(e) => this.props.onChangeText(e)}
+            onEditingText={(e) => this.props.onEditingText(e)}
+            editingText={this.props.editingText}
           ></ShapeEditor>
         );
         break;
