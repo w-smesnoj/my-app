@@ -15,7 +15,7 @@ export default class ItemEditor extends React.Component {
     super(props);
     this.state = {
       visibleEditorBar: true,
-      // editingText: false,
+      openELement: null,
     };
     this.formatAligns = [
       {
@@ -74,6 +74,8 @@ export default class ItemEditor extends React.Component {
 
     this.formatAlign = this.formatAlign.bind(this);
     this.formatAlignVertical = this.formatAlignVertical.bind(this);
+
+    this.openTool = this.openTool.bind(this);
   }
   dragShape(e, pos, item) {
     this.props.onShapeDrag(e, pos, item);
@@ -167,8 +169,14 @@ export default class ItemEditor extends React.Component {
     item.text.style.color = color;
     this.props.applyItemChanges(item);
   }
+  openTool(e) {
+    const val = e.target.value;
+    let result = val === this.state.openElement ? null : val;
+    this.setState({ openElement: result });
+  }
   render() {
     const item = this.props.item;
+    let openElement = this.state.openElement;
     const pos = item.pos;
     const dim = item.dim;
     let style = {
@@ -200,7 +208,13 @@ export default class ItemEditor extends React.Component {
             </div>
           </div>
           <div className='group'>
-            <BarButton ic='format_bold'>
+            <BarButton
+              io='format_bold'
+              name='tools'
+              value='format_bold'
+              onChange={this.openTool}
+              comp={openElement}
+            >
               <div className='group'>
                 {this.styles.map((style) => {
                   return (
@@ -214,7 +228,13 @@ export default class ItemEditor extends React.Component {
               </div>
             </BarButton>
 
-            <BarButton ic='format_align_center'>
+            <BarButton
+              ic='format_align_center'
+              name='tools'
+              value='format_align_center'
+              onChange={this.openTool}
+              comp={openElement}
+            >
               <div>
                 <div className='group'>
                   {this.formatAligns.map((format) => {
@@ -246,7 +266,13 @@ export default class ItemEditor extends React.Component {
                 </div>
               </div>
             </BarButton>
-            <BarButton ic='format_color_text'>
+            <BarButton
+              ic='format_color_text'
+              name='tools'
+              value='format_color_text'
+              onChange={this.openTool}
+              comp={openElement}
+            >
               <div>
                 <div className='group'>
                   <ColorPalette
@@ -261,6 +287,10 @@ export default class ItemEditor extends React.Component {
             <BarButton
               io='trip_origin'
               iconColor={item.style.borderColor}
+              name='tools'
+              value='trip_origin'
+              onChange={this.openTool}
+              comp={openElement}
               className='row'
             >
               <div className='group row '>
@@ -289,6 +319,10 @@ export default class ItemEditor extends React.Component {
             <BarButton
               ic='circle'
               iconColor={item.style.backgroundColor}
+              name='tools'
+              value='circle'
+              onChange={this.openTool}
+              comp={openElement}
               className='row'
             >
               <div className='group row'>
