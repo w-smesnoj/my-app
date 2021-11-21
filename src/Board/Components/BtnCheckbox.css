@@ -5,13 +5,15 @@ label.btn-checkbox {
   cursor: pointer;
   user-select: none;
   color: hsl(202deg 100% 15%);
+  border-radius: 0.3rem;
+  overflow: none;
 }
 label.btn-checkbox:hover {
   color: black;
+  background: #0000000d;
 }
 .btn-checkbox input:checked ~ span {
-  background: hsl(0deg 0% 90%);
-  /* color: white; */
+  color: #2d9bf0;
   border-radius: 0.3rem;
   -webkit-border-radius: 0.3rem;
   -moz-border-radius: 0.3rem;

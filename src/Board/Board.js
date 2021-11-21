@@ -1,10 +1,11 @@
 import React from 'react';
+import ItemEditor from './Components/ItemEditor.js';
 import './Board.css';
 import { items } from '../configs/items.js';
-import ItemEditor from './Components/ItemEditor.js';
 import Shape from './Components/Shape.js';
 import SmartConnection from './Components/SmartConnection.js';
-
+import { v4 as uuidv4 } from 'uuid';
+import Screen from './Components/Screen.js';
 export default class Board extends React.Component {
   constructor(props) {
     super(props);
@@ -16,9 +17,50 @@ export default class Board extends React.Component {
       },
       editingText: false,
       textData: null,
+      // ind: null,
+      selectedTool: null,
     };
+    this.createNewShape = this.createNewShape.bind(this);
+    this.selectTool = this.selectTool.bind(this);
   }
-
+  createNewShape(e) {
+    const items = [...this.state.items];
+    const newShape = {
+      type: 'shape',
+      id: uuidv4(),
+      dim: {
+        w: 150,
+        h: 50,
+      },
+      pos: {
+        x: e.clientX - 150 / 2,
+        y: e.clientY - 50 / 2,
+      },
+      text: {
+        data: '',
+        style: {
+          bold: false,
+          fontFamily: 'Inter',
+          fontSize: '16',
+          italic: false,
+          underline: false,
+          strikethrough: false,
+          align: 'center',
+          alignVertical: 'center',
+          color: '#27262b',
+        },
+      },
+      style: {
+        backgroundColor: '#fef72f',
+        borderColor: '#27262b',
+        borderSize: '2',
+        borderOpacity: '10',
+        opacity: '9',
+      },
+    };
+    items.push(newShape);
+    this.setState({ items });
+  }
   clearFocus(e) {
     if (e.currentTarget !== e.target) return;
     if (this.state.editingText && this.state.textData) {
@@ -42,7 +84,6 @@ export default class Board extends React.Component {
         ref: ref.current,
       },
     });
-    // console.log(this.state.focusedItem, 'i');
   }
 
   handleChange(e) {
@@ -92,11 +133,23 @@ export default class Board extends React.Component {
   editingText(e) {
     this.setState({ editingText: true });
   }
-  // controlledDrag(e, position, item) {
-  //   const items = [...this.state.items];
-  //   const itemx = items.find((iteme) => iteme.id === item.id);
-  //   itemx.pos = position;
-  //   this.setState({ items });
+  selectTool(tool) {
+    this.setState({
+      selectedTool: tool,
+    });
+  }
+  // msOver(e) {
+  // let ind = null;
+  // if (e.target.classList.contains('shape')) {
+  //   const item = this.state.items.find((item) => item.id === e.target.id);
+  //   ind = {
+  //     dim: item.dim,
+  //     pos: item.pos,
+  //   };
+  // }
+  // this.setState({
+  //   ind: ind,
+  // });
   // }
 
   render() {
@@ -143,9 +196,28 @@ export default class Board extends React.Component {
           break;
       }
     });
+    // let ind = [];
+    // && this.state.selectedTool.name === 'line'
+    // if (this.state.ind) {
+    //   let fcs = this.state.ind;
+    //   ind.push(
+    //     <div
+    //       className='ind1'
+    //       style={{
+    //         transform: `translate(${fcs.pos.x}px, ${fcs.pos.y}px)`,
+    //         width: `${fcs.dim.w}px`,
+    //         height: `${fcs.dim.h}px`,
+    //         position: 'absolute',
+    //         outline: '2px solid red',
+    //       }}
+    //     ></div>
+    //   );
+    // }
 
     return (
       <div>
+        <Screen onToolSelected={this.selectTool} />
+
         {this.state.focusedItem.item ? (
           <ItemEditor
             item={this.state.focusedItem}
@@ -158,9 +230,16 @@ export default class Board extends React.Component {
             editingText={this.state.editingText}
           />
         ) : null}
+        {/*  onMouseOver={(e) => this.msOver(e)} */}
         <div className='board'>
+          {/* {ind} */}
           {shapes}
-          <svg onClick={(e) => this.clearFocus(e)}>{smartConnections}</svg>
+          <svg
+            onClick={(e) => this.clearFocus(e)}
+            onDoubleClick={this.createNewShape}
+          >
+            {smartConnections}
+          </svg>
         </div>
       </div>
     );

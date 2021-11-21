@@ -1,7 +1,7 @@
 .board {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  width: 5000px;
+  height: 5000px;
   outline: 1px solid gray;
   background-color: hsl(0deg 0% 95%);
   background: url('grid.svg');
@@ -14,8 +14,11 @@
 
 .board > svg {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  width: 5000px;
+  height: 5000px;
   top: 0;
   left: 0;
 }
+/* .ind1 {
+  pointer-events: none;
+} */
