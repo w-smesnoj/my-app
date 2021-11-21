@@ -8,6 +8,7 @@ import ColorPalette from './ColorPalette';
 import Slider from './Slider';
 import './Handles.css';
 import BtnCheckbox from './BtnCheckbox';
+import BtnRadio from './BtnRadio.js';
 
 export default class ItemEditor extends React.Component {
   constructor(props) {
@@ -16,6 +17,34 @@ export default class ItemEditor extends React.Component {
       visibleEditorBar: true,
       // editingText: false,
     };
+    this.formatAligns = [
+      {
+        alignment: 'left',
+        io: 'format_align_left',
+      },
+      {
+        alignment: 'center',
+        io: 'format_align_center',
+      },
+      {
+        alignment: 'right',
+        io: 'format_align_right',
+      },
+    ];
+    this.formatAlignVerticals = [
+      {
+        alignment: 'top',
+        io: 'align_vertical_top',
+      },
+      {
+        alignment: 'center',
+        io: 'align_vertical_center',
+      },
+      {
+        alignment: 'bottom',
+        io: 'align_vertical_bottom',
+      },
+    ];
     this.fontSizeValues = [10, 14, 16, 18, 24, 36, 48, 64, 80, 144, 288];
     this.fontFamilyValues = ['Inter', 'Arial', 'Avenir'];
     this.styles = [
@@ -42,6 +71,9 @@ export default class ItemEditor extends React.Component {
     this.handleBorderSizeChange = this.handleBorderSizeChange.bind(this);
     this.handleBorderOpacityChange = this.handleBorderOpacityChange.bind(this);
     this.handleOpacityChange = this.handleOpacityChange.bind(this);
+
+    this.formatAlign = this.formatAlign.bind(this);
+    this.formatAlignVertical = this.formatAlignVertical.bind(this);
   }
   dragShape(e, pos, item) {
     this.props.onShapeDrag(e, pos, item);
@@ -82,14 +114,14 @@ export default class ItemEditor extends React.Component {
     item.text.style.fontFamily = e.target.value;
     this.props.applyItemChanges(item);
   }
-  formatAlign(alignment) {
+  formatAlign(e) {
     let item = Object.assign({}, this.props.item);
-    item.text.style.align = alignment;
+    item.text.style.align = e.target.value;
     this.props.applyItemChanges(item);
   }
-  formatAlignVertical(alignment) {
+  formatAlignVertical(e) {
     let item = Object.assign({}, this.props.item);
-    item.text.style.alignVertical = alignment;
+    item.text.style.alignVertical = e.target.value;
     this.props.applyItemChanges(item);
   }
   resizeShape = (e, dimensions) => {
@@ -185,26 +217,32 @@ export default class ItemEditor extends React.Component {
             <BarButton ic='format_align_center'>
               <div>
                 <div className='group'>
-                  <button onClick={() => this.formatAlign('left')}>
-                    <Ic>format_align_left</Ic>
-                  </button>
-                  <button onClick={() => this.formatAlign('center')}>
-                    <Ic>format_align_center</Ic>
-                  </button>
-                  <button onClick={() => this.formatAlign('right')}>
-                    <Ic>format_align_right</Ic>
-                  </button>
+                  {this.formatAligns.map((format) => {
+                    return (
+                      <BtnRadio
+                        name='align'
+                        io={format.io}
+                        value={format.alignment}
+                        checked={format.alignment === item.text.style.align}
+                        onChange={this.formatAlign}
+                      />
+                    );
+                  })}
                 </div>
                 <div className='group'>
-                  <button onClick={() => this.formatAlignVertical('top')}>
-                    <Ic>align_vertical_top</Ic>
-                  </button>
-                  <button onClick={() => this.formatAlignVertical('center')}>
-                    <Ic>align_vertical_center</Ic>
-                  </button>
-                  <button onClick={() => this.formatAlignVertical('bottom')}>
-                    <Ic>align_vertical_bottom</Ic>
-                  </button>
+                  {this.formatAlignVerticals.map((format) => {
+                    return (
+                      <BtnRadio
+                        name='align-vertical'
+                        io={format.io}
+                        value={format.alignment}
+                        checked={
+                          format.alignment === item.text.style.alignVertical
+                        }
+                        onChange={this.formatAlignVertical}
+                      />
+                    );
+                  })}
                 </div>
               </div>
             </BarButton>
