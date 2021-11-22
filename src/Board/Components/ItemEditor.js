@@ -6,7 +6,7 @@ import ShapeEditor from './ShapeEditor';
 
 export default class ItemEditor extends React.Component {
   render() {
-    const item = this.props.item.item;
+    const item = this.props.item;
     let style = {
       transform: `translate(${item.pos.x}px, ${item.pos.y}px)`,
       width: `${item.dim.w}px`,

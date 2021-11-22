@@ -14,7 +14,6 @@ export default class ItemEditor extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      visibleEditorBar: true,
       openELement: null,
     };
     this.formatAligns = [
@@ -361,7 +360,6 @@ export default class ItemEditor extends React.Component {
             <Draggable
               position={pos}
               onDrag={(e, pos) => this.dragShape(e, pos, item)}
-              onStop={() => this.setState({ visibleEditorBar: true })}
               grid={[25, 25]}
             >
               <div

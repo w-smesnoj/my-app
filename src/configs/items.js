@@ -1,5 +1,6 @@
 export const items = [
   {
+    index: 0,
     type: 'shape',
     id: 'A',
     dim: {
@@ -33,6 +34,7 @@ export const items = [
     },
   },
   {
+    index: 1,
     type: 'shape',
     id: 'Z',
     dim: {
@@ -66,6 +68,7 @@ export const items = [
     },
   },
   {
+    index: 2,
     type: 'smart-connection',
     form: 'linear',
     id: '0',
@@ -78,6 +81,7 @@ export const items = [
     className: 'main',
   },
   {
+    index: 3,
     type: 'shape',
     id: 'B',
     dim: {
@@ -111,6 +115,7 @@ export const items = [
     },
   },
   {
+    index: 4,
     type: 'shape',
     id: 'C',
     dim: {
@@ -144,6 +149,7 @@ export const items = [
     },
   },
   {
+    index: 5,
     type: 'shape',
     id: 'D',
     dim: {
@@ -177,6 +183,7 @@ export const items = [
     },
   },
   {
+    index: 6,
     type: 'smart-connection',
     form: 'linear',
     id: 'E',
@@ -189,6 +196,7 @@ export const items = [
     className: 'sub',
   },
   {
+    index: 7,
     type: 'smart-connection',
     form: 'linear',
     id: 'F',
@@ -201,6 +209,7 @@ export const items = [
     className: 'sub',
   },
   {
+    index: 8,
     type: 'smart-connection',
     form: 'linear',
     id: 'G',
@@ -213,6 +222,7 @@ export const items = [
     className: 'main',
   },
   {
+    index: 9,
     type: 'shape',
     id: 'H',
     dim: {
@@ -246,6 +256,7 @@ export const items = [
     },
   },
   {
+    index: 10,
     type: 'shape',
     id: 'I',
     dim: {
@@ -279,6 +290,7 @@ export const items = [
     },
   },
   {
+    index: 11,
     type: 'shape',
     id: 'J',
     dim: {
@@ -312,6 +324,7 @@ export const items = [
     },
   },
   {
+    index: 12,
     type: 'smart-connection',
     form: 'bezier',
     id: '1',
@@ -324,6 +337,7 @@ export const items = [
     className: 'sub',
   },
   {
+    index: 13,
     type: 'smart-connection',
     form: 'bezier',
     id: '2',
@@ -336,6 +350,7 @@ export const items = [
     className: 'sub',
   },
   {
+    index: 14,
     type: 'smart-connection',
     form: 'bezier',
     id: '3',

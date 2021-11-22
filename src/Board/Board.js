@@ -220,7 +220,7 @@ export default class Board extends React.Component {
 
         {this.state.focusedItem.item ? (
           <ItemEditor
-            item={this.state.focusedItem}
+            item={this.state.items[this.state.focusedItem.item.index]}
             applyItemChanges={(item) => this.applyItemChanges(item)}
             onShapeDrag={(e, position, item) => this.setPos(item.id, position)}
             onShapeResize={(e, dimensions, item) =>
