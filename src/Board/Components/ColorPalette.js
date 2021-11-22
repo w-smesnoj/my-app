@@ -11,7 +11,7 @@ export default class ColorPalette extends React.Component {
         '#27262b',
         '#f87070',
         '#fc923c',
-        '#FBBF23',
+        '#fbbf23',
         '#facc16',
         '#a3e636',
         '#4ade80',
