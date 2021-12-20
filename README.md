@@ -11,8 +11,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - [ ] Group Selector
 - [ ] Shape Edits
   - [x] Text
-    - [ ] Font
-    - [ ] Size
+    - [x] Font
+    - [x] Size
     - [x] Style
       - [x] Bold
       - [x] Italics

@@ -57,7 +57,7 @@ export default class Shape extends React.Component {
       <div
         id={this.props.id}
         style={{ ...shapeDimensions, ...shapeStyle, ...textStyle }}
-        ref={this.props.setRef}
+        // ref={this.props.setRef}
         onClick={this.props.onClick}
         className='shape'
         contentEditable={this.props.editingText}

@@ -11,10 +11,7 @@ export default class Board extends React.Component {
     super(props);
     this.state = {
       items: items,
-      focusedItem: {
-        item: null,
-        txt: null,
-      },
+      focusedItem: null,
       editingText: false,
       textData: null,
       // ind: null,
@@ -36,6 +33,7 @@ export default class Board extends React.Component {
         x: e.clientX - 150 / 2,
         y: e.clientY - 50 / 2,
       },
+      index: items.length,
       text: {
         data: '',
         style: {
@@ -60,6 +58,7 @@ export default class Board extends React.Component {
     };
     items.push(newShape);
     this.setState({ items });
+    this.focusItem(newShape);
   }
   clearFocus(e) {
     if (e.currentTarget !== e.target) return;
@@ -67,30 +66,22 @@ export default class Board extends React.Component {
       this.changeText(this.state.textData);
     }
     this.setState({
-      focusedItem: {
-        item: null,
-        txt: null,
-      },
+      focusedItem: null,
       editingText: false,
       textData: null,
     });
   }
-  focusItem(e, item, ref) {
-    e.stopPropagation();
-    e.nativeEvent.stopImmediatePropagation();
+  focusItem(item) {
+    // e.stopPropagation();
+    // e.nativeEvent.stopImmediatePropagation();
     this.setState({
-      focusedItem: {
-        item: item,
-        ref: ref.current,
-      },
+      focusedItem: item,
     });
   }
 
   handleChange(e) {
     const items = [...this.state.items];
-    const item = items.find(
-      (item) => item.id === this.state.focusedItem.item.id
-    );
+    const item = items.find((item) => item.id === this.state.focusedItem.id);
 
     switch (e.type) {
       case 'bold':
@@ -125,8 +116,8 @@ export default class Board extends React.Component {
   }
   changeText(text) {
     const items = [...this.state.items];
-    let index = items.findIndex((i) => i.id === this.state.focusedItem.item.id);
-    items[index] = this.state.focusedItem.item;
+    let index = items.findIndex((i) => i.id === this.state.focusedItem.id);
+    items[index] = this.state.focusedItem;
     items[index].text.data = text;
     this.setState({ items });
   }
@@ -157,7 +148,7 @@ export default class Board extends React.Component {
     let smartConnections = [];
 
     this.state.items.forEach((item) => {
-      const ref = React.createRef();
+      // const ref = React.createRef();
       switch (item.type) {
         case 'shape':
           shapes.push(
@@ -165,8 +156,8 @@ export default class Board extends React.Component {
               id={item.id}
               config={item}
               key={item.id}
-              setRef={ref}
-              onClick={(e) => this.focusItem(e, item, ref)}
+              // setRef={ref}
+              onClick={(e) => this.focusItem(item)}
               editingText={this.state.editingText}
               onChangeText={(text) => this.textChangeFire(text)}
             />
@@ -186,8 +177,8 @@ export default class Board extends React.Component {
               pos={item.pos}
               setDim={(id, dim) => this.setDim(id, dim)}
               setPos={(id, pos) => this.setPos(id, pos)}
-              setRef={ref}
-              onClick={(e) => this.focusItem(e, item, ref)}
+              // setRef={ref}
+              onClick={(e) => this.focusItem(item)}
               className={item.className}
             />
           );
@@ -213,23 +204,36 @@ export default class Board extends React.Component {
     //     ></div>
     //   );
     // }
-
+    let editor;
+    let style;
+    if (this.state.focusedItem) {
+      const item = this.state.items[this.state.focusedItem.index];
+      style = {
+        transform: `translate(${item.pos.x}px, ${item.pos.y}px)`,
+        width: `${item.dim.w}px`,
+        height: `${item.dim.h}px`,
+        position: 'absolute',
+        pointerEvents: 'none',
+      };
+      editor = (
+        <ItemEditor
+          item={item}
+          applyItemChanges={(item) => this.applyItemChanges(item)}
+          onShapeDrag={(e, position, item) => this.setPos(item.id, position)}
+          onShapeResize={(e, dimensions, item) =>
+            this.setDim(item.id, dimensions)
+          }
+          onEditingText={(e) => this.editingText(e)}
+          editingText={this.state.editingText}
+        />
+      );
+    }
     return (
       <div>
         <Screen onToolSelected={this.selectTool} />
+        {editor}
+        <div className='highlight-container' style={style}></div>
 
-        {this.state.focusedItem.item ? (
-          <ItemEditor
-            item={this.state.items[this.state.focusedItem.item.index]}
-            applyItemChanges={(item) => this.applyItemChanges(item)}
-            onShapeDrag={(e, position, item) => this.setPos(item.id, position)}
-            onShapeResize={(e, dimensions, item) =>
-              this.setDim(item.id, dimensions)
-            }
-            onEditingText={(e) => this.editingText(e)}
-            editingText={this.state.editingText}
-          />
-        ) : null}
         {/*  onMouseOver={(e) => this.msOver(e)} */}
         <div className='board'>
           {/* {ind} */}

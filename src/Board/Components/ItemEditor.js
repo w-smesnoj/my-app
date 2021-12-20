@@ -7,13 +7,7 @@ import ShapeEditor from './ShapeEditor';
 export default class ItemEditor extends React.Component {
   render() {
     const item = this.props.item;
-    let style = {
-      transform: `translate(${item.pos.x}px, ${item.pos.y}px)`,
-      width: `${item.dim.w}px`,
-      height: `${item.dim.h}px`,
-      position: 'absolute',
-      pointerEvents: 'none',
-    };
+
     let editor;
 
     switch (item.type) {
@@ -45,11 +39,6 @@ export default class ItemEditor extends React.Component {
         // return null;
         break;
     }
-    return (
-      <div>
-        {editor}
-        <div className='highlight-container' style={{ ...style }}></div>
-      </div>
-    );
+    return <div>{editor}</div>;
   }
 }
