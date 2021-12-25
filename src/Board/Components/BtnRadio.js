@@ -11,7 +11,7 @@ export default class BtnRadio extends React.Component {
           name={this.props.name.toString()}
           type='radio'
           value={this.props.value}
-          onClick={this.props.onChange}
+          onChange={this.props.onChange}
           checked={this.props.checked}
         />
         {this.props.ic ? <Ic>{this.props.ic}</Ic> : null}

@@ -19,6 +19,10 @@
   top: 0;
   left: 0;
 }
+/* .highlight-container {
+  position: 'absolute';
+  pointer-events: 'none';
+} */
 /* .ind1 {
   pointer-events: none;
 } */

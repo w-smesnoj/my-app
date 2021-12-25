@@ -1,6 +1,6 @@
 import React from 'react';
 import './SmartConnection.css';
-
+import { cordToDeg } from '../Functions/math.js';
 export default class SmartBezier extends React.Component {
   constructor(props) {
     super(props);
@@ -11,14 +11,23 @@ export default class SmartBezier extends React.Component {
   }
   updateDimAndPos() {
     const rect = this.myRef.current.getBoundingClientRect();
-    this.props.setDim(this.props.id, {
-      w: rect.width,
-      h: rect.height,
-    });
-    this.props.setPos(this.props.id, {
-      x: rect.x,
-      y: rect.y,
-    });
+    const { scrollX, scrollY } = window;
+    this.props.setDim(
+      null,
+      {
+        w: rect.width,
+        h: rect.height,
+      },
+      this.props.id
+    );
+    this.props.setPos(
+      null,
+      {
+        x: rect.x + scrollX,
+        y: rect.y + scrollY,
+      },
+      this.props.id
+    );
   }
   onClick(e) {
     this.updateDimAndPos();
@@ -123,10 +132,4 @@ function determineOrientation(A, B, callback) {
   } else {
     callback.south();
   }
-}
-
-function cordToDeg(A, B) {
-  let rad = Math.atan2(A.y - B.y, A.x - B.x);
-  rad = rad < 0 ? rad + 2 * Math.PI : rad;
-  return rad * (180 / Math.PI);
 }

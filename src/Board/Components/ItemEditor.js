@@ -16,12 +16,11 @@ export default class ItemEditor extends React.Component {
           <ShapeEditor
             item={item}
             applyItemChanges={(e) => this.props.applyItemChanges(e)}
-            onShapeResize={(e, dim, item) =>
-              this.props.onShapeResize(e, dim, item)
-            }
-            onShapeDrag={(e, pos, item) => this.props.onShapeDrag(e, pos, item)}
+            onShapeResize={this.props.onShapeResize}
+            onShapeDrag={this.props.onShapeDrag}
             onChangeText={(e) => this.props.onChangeText(e)}
             onEditingText={(e) => this.props.onEditingText(e)}
+            onStopEditingText={(e) => this.props.onStopEditingText(e)}
             editingText={this.props.editingText}
           ></ShapeEditor>
         );
@@ -39,6 +38,6 @@ export default class ItemEditor extends React.Component {
         // return null;
         break;
     }
-    return <div>{editor}</div>;
+    return <>{editor}</>;
   }
 }

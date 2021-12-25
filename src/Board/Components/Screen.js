@@ -50,6 +50,7 @@ export default class Screen extends React.Component {
                 value={tool.name}
                 checked={tool.name === this.state.selectedTool.name}
                 onChange={this.setSelectedTool}
+                key={tool.name}
               />
             );
           })}

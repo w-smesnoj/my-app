@@ -6,13 +6,14 @@ label.btn-radio {
   user-select: none;
   color: hsl(202deg 100% 15%);
   border-radius: 0.3rem;
-  overflow: none;
+  /* overflow: none; */
+  display: block;
 }
 label.btn-radio:hover {
   color: black;
   background: #0000000d;
 }
-.btn-radio input:checked ~ span {
+.btn-radio > input:checked ~ span {
   color: #2d9bf0;
 }
 .btn-radio span {

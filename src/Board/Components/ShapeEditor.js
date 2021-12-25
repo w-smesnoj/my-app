@@ -1,6 +1,5 @@
 import React from 'react';
 import EditorBar from './EditorBar';
-import Ic from './ic.js';
 import Draggable from 'react-draggable';
 import BarButton from './BarButton';
 import Select from './Select';
@@ -9,6 +8,7 @@ import Slider from './Slider';
 import './Handles.css';
 import BtnCheckbox from './BtnCheckbox';
 import BtnRadio from './BtnRadio.js';
+import Ic from './ic';
 
 export default class ItemEditor extends React.Component {
   constructor(props) {
@@ -76,8 +76,8 @@ export default class ItemEditor extends React.Component {
 
     this.openTool = this.openTool.bind(this);
   }
-  dragShape(e, pos, item) {
-    this.props.onShapeDrag(e, pos, item);
+  dragShape(e, pos) {
+    this.props.onShapeDrag(e, pos, this.props.item.id);
     this.setState({ visibleEditorBar: false });
   }
   makeTextEditable = (e) => {
@@ -135,7 +135,7 @@ export default class ItemEditor extends React.Component {
         w: item.dim.w + deltaW,
         h: item.dim.h + deltaH,
       },
-      item
+      item.id
     );
   };
   handleBorderOpacityChange(e) {
@@ -175,7 +175,7 @@ export default class ItemEditor extends React.Component {
   }
   render() {
     const item = this.props.item;
-    let openElement = this.state.openElement;
+    const { openElement } = this.state;
     const pos = item.pos;
     const dim = item.dim;
     let style = {
@@ -221,6 +221,7 @@ export default class ItemEditor extends React.Component {
                       value={item.text.style[style.value]}
                       onChange={() => this.textStyle(style.value)}
                       ic={style.ic}
+                      key={style.value}
                     />
                   );
                 })}
@@ -244,6 +245,7 @@ export default class ItemEditor extends React.Component {
                         value={format.alignment}
                         checked={format.alignment === item.text.style.align}
                         onChange={this.formatAlign}
+                        key={format.alignment}
                       />
                     );
                   })}
@@ -259,6 +261,7 @@ export default class ItemEditor extends React.Component {
                           format.alignment === item.text.style.alignVertical
                         }
                         onChange={this.formatAlignVertical}
+                        key={format.alignment}
                       />
                     );
                   })}
@@ -342,10 +345,17 @@ export default class ItemEditor extends React.Component {
               </div>
             </BarButton>
           </div>
+          {this.props.editingText ? (
+            <div className='group'>
+              <button onClick={this.props.onStopEditingText}>
+                <Ic>done</Ic>
+              </button>
+            </div>
+          ) : null}
         </EditorBar>
 
         {this.props.editingText ? null : (
-          <div>
+          <>
             <Draggable
               position={{
                 x: pos.x + dim.w,
@@ -359,7 +369,7 @@ export default class ItemEditor extends React.Component {
             </Draggable>
             <Draggable
               position={pos}
-              onDrag={(e, pos) => this.dragShape(e, pos, item)}
+              onDrag={(e, pos) => this.dragShape(e, pos)}
               grid={[25, 25]}
             >
               <div
@@ -368,7 +378,7 @@ export default class ItemEditor extends React.Component {
                 onDoubleClick={this.makeTextEditable}
               ></div>
             </Draggable>
-          </div>
+          </>
         )}
       </div>
     );

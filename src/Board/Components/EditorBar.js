@@ -9,11 +9,11 @@ export default class EditorBar extends React.Component {
     const y = pos.y;
     const position = `translate(${x}px,${y}px) translate(-50%, -50%) translateY(-2.7rem)`;
     return (
-      <div>
+      <>
         <div className='editor' style={{ transform: position }}>
           <div className='control-groups'>{this.props.children}</div>
         </div>
-      </div>
+      </>
     );
   }
 }

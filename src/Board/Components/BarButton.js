@@ -3,9 +3,6 @@ import './ItemEditor.css';
 import BtnRadio from './BtnRadio.js';
 
 export default class BarButton extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     return (
       <div>

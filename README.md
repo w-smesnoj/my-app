@@ -38,6 +38,19 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - [ ] State History
 - [ ] Right Click Context Menu
 
+---
+
+unix timestamp: 1640474075
+
+- added 'confirm' button to shape content edit
+- refactored functions and binds
+- fixed wrong pos of connection element on click with window scroll
+- added keys to iterable elements
+- silenced strict warnings
+- took advantage of fragments
+
+---
+
 ## Available Scripts
 
 In the project directory, you can run:

@@ -60,6 +60,7 @@ export default class Shape extends React.Component {
         // ref={this.props.setRef}
         onClick={this.props.onClick}
         className='shape'
+        suppressContentEditableWarning='true'
         contentEditable={this.props.editingText}
         onInput={(e) => this.handleContentChange(e)}
       >

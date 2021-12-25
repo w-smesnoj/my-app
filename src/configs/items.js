@@ -363,3 +363,40 @@ export const items = [
     className: 'main',
   },
 ];
+
+export function template(id, x, y, i) {
+  return {
+    type: 'shape',
+    id: id,
+    dim: {
+      w: 150,
+      h: 50,
+    },
+    pos: {
+      x: x,
+      y: y,
+    },
+    index: i,
+    text: {
+      data: '',
+      style: {
+        bold: false,
+        fontFamily: 'Inter',
+        fontSize: '16',
+        italic: false,
+        underline: false,
+        strikethrough: false,
+        align: 'center',
+        alignVertical: 'center',
+        color: '#27262b',
+      },
+    },
+    style: {
+      backgroundColor: '#fef72f',
+      borderColor: '#27262b',
+      borderSize: '2',
+      borderOpacity: '10',
+      opacity: '9',
+    },
+  };
+}
